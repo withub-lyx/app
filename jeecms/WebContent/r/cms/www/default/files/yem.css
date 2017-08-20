@@ -1,0 +1,121 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+
+/*yaow*/
+.subnav {
+	width:auto;
+	float:left;}
+.subnav ul{
+	list-style-type:none;
+	}
+.subnav ul li{
+	width:150px;
+	height:40px;
+	color:#333;
+	text-align:center;
+	line-height:40px;
+	display:block;
+	background-color:#eeeeee;
+	margin-top:1px;
+	}
+.subnav ul li:hover{
+	background-color:#fff;
+	border-left:3px solid #1388ff;
+	}
+.subnav ul li.active {
+	background-color:#fff;
+	border-left:3px solid #1388ff;}
+.conts {
+	width:auto;
+	float:left;
+	margin-left:25px;}
+.locat {
+	color:#999;
+	font-size:13px;
+	width:auto;
+	float:left;
+	line-height:40px;}
+.locat a{color:#999;}
+.locat a:hover{color:#F60;}
+.search{
+	width:auto;
+	float:right;}
+.titles {
+	border-left:3px solid #1388ff;
+	font-size:16px;
+	color:#666;
+	padding-left:12px;
+	line-height:26px;
+	margin: 10px 0;}
+	
+.tex{
+	padding-left:15px;
+	}
+	
+.texli{
+	font-size:13px;
+	line-height:38px;
+	border-bottom:1px solid #eee;
+	}
+/*xinw*/
+.ti{
+	margin: 10px 0;
+	border-top:2px solid #1388ff;
+	text-align:center;
+	padding:10px 0;
+	border-bottom:1px dashed #999;
+	}
+.tit{
+	font-size:18px;
+	line-height:32px;}
+.tis {
+	color:#999;
+	font-size:12px;
+	}
+.news_img{width:670px;}
+.text {
+	color:#666;
+	font-family: "宋体";
+	line-height:20px;
+	padding:10px;
+	word-wrap:break-word;
+	width:670px;}
+/*lieb*/
+.tip{
+	padding-left:10px;
+	color:#999;
+	font-size:12px;
+	}
+.num{
+	color:#1388ff;
+	font-size:16px;}
+.table {
+	padding:10px;
+    width:100%;
+}
+.tab {width:870px;
+}
+.tab_tr {
+	background-color:#d9ebff;
+	height:43px;
+}
+.tab_th {border-top:2px solid #1388ff;
+         border-bottom:1px solid #ccc;
+        }
+.tab_th div {
+	font-weight:normal;
+    color:#333;
+    padding:0 10px;
+    line-height:30px;}
+.tab_body {}
+.tab_td {
+	height:38px;
+	border-bottom:1px solid #ccc;
+text-align:center;}
+.tab_td div {
+	font-weight:normal;
+color:#555;
+line-height:28px;}
+.trodd {
+	background-color:#f6f6f6;
+	}

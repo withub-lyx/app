@@ -1,0 +1,92 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.portal.**.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    <!-- 必要不可少 @Controller注解的使用前提配置。 -->
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters register-defaults="true">
+            <!--支持json/jsonp-->
+            <bean class="com.portal.common.page.FastJsonpSupportHttpMessageConverter"/>
+            <!-- 这个配置可以解决@ResponseBody返回string乱码-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0">
+                    <value>utf-8</value>
+                </constructor-arg>
+            </bean>
+        </mvc:message-converters>
+
+            <mvc:argument-resolvers>
+                <bean class="com.portal.auth.anno.CurrentUserMethodArgumentResolver" autowire="byType"/>
+            </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <mvc:default-servlet-handler/>
+
+    <!-- ViewResolver InternalResourceViewResolver：用于支持Servlet、JSP视图解析； -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="2"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!--验证配置-->
+    <!-- 指定自己定义的validator -->
+    <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
+
+    <!-- 定义tiles视图解析器 -->
+    <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="order" value="1"/>
+    </bean>
+    <!-- Initializes the Apache Tiles CompositeView system -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <value>
+                /WEB-INF/views/**/tiles.xml
+            </value>
+        </property>
+        <!--tiles和freemark集成，必需要！！！不能少-->
+        <!--<property name="completeAutoload" value="true"/>-->
+    </bean>
+
+
+
+    <!--shiro -->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <!--注解支持-->
+    <aop:config proxy-target-class="true"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!--<bean class="com.portal.common.log.LogAspect"/>-->
+
+    <!--错误页面handler
+    包括未授权的-->
+    <bean class="com.portal.auth.exceptionHandler.DefaultExceptionHandler"/>
+
+    <context:property-placeholder  order="1" location="classpath:config/*.properties" ignore-resource-not-found="false"/>
+
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+</beans>

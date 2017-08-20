@@ -1,0 +1,546 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+
+/*yaow*/
+.subnav {
+	width:150px;
+	float:left;}
+.subnav ul{
+	list-style-type:none;
+	}
+.subnav ul li{
+	position:relative;
+	width:100%;
+	height:auto;
+	color:#333;
+	text-align:center;
+	line-height:40px;
+	display:block;
+	background-color:#eeeeee;
+	margin-top:1px;
+	}
+.subnav ul li a{
+	display: inline-block;
+	width:100%;
+}
+.subnav ul li ul{
+	/*position: absolute;
+	left: 150px;
+	top: 0px;*/
+	width: 100%;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	display:none
+	}
+.subnav ul li ul li {
+	/*position: absolute;
+	left: 150px;
+	top: 0px;*/
+	font-size:12px;
+	}
+.subnav ul li:hover{
+	background-color:#fff;
+	border-left:3px solid #1388ff;
+	font-weight: bold;
+	}
+.subnav ul li:hover ul { display:block}
+/*.subnav ul li.active {
+	background-color:#fff;
+	border-left:3px solid #1388ff;}*/
+.subnav ul li.active {
+	background-color:#1388ff;color:#fff;font-size:16px;
+	/*border-left:3px solid #1388ff;*/
+	}
+.subnav ul li.active a{
+	color:#fff;
+}
+.conts {
+	width:800px;
+	float:left;
+	margin-left:25px;}
+.conts_ssfw {
+	width:auto;
+	float:left;
+	margin-left:25px;}
+.locat {
+	/*color:#999;*/
+	font-size:13px;
+	width:auto;
+	float:left;
+	line-height:40px;}
+.locat a:hover{color:#F60;}
+.search{
+	width:auto;
+	float:right;}
+.search_input{
+	width:auto;
+	float:left;
+}
+.search_zxxx{
+	width:auto;
+	float:left;
+	padding:20px 20px 20px 20px;
+	}
+.search_1{
+	width:auto;
+	float:left;
+	padding-right:20px;
+	margin-left:10px;
+	}
+.titles {
+	border-left:3px solid #1388ff;
+	font-size:16px;
+	/*color:#666;*/
+	padding-left:12px;
+	line-height:26px;
+	margin: 10px 0;
+	width:auto
+	}
+	
+.tex{
+	width:790px;
+	height:auto;
+	padding-left:15px;
+	overflow:hidden;
+	zoom:1
+	}
+/*文书公开*/
+.texwsgk{
+	width:990px;
+	height:auto;
+	padding-left:15px;
+	overflow:hidden;
+	zoom:1
+	}
+.searchwsgk{
+	height:auto;
+	width:98%;
+	border: 1px solid rgb(204, 204, 204);
+	margin:20px 0 20px 20px
+}
+
+/*执行信息*/
+.texzxxx{
+	width:990px;
+	height:auto;
+	padding-left:15px;
+	overflow:hidden;
+	zoom:1
+	}
+/*审判流程*/
+.texsplc{
+	width:990px;
+	height:auto;
+	padding-left:15px;
+	overflow:hidden;
+	zoom:1
+	}
+/*法院指引*/
+.texFyzy{
+	width:98%;
+	height:auto;
+	padding-left:15px;
+	}	
+.texli{
+	font-size:13px;
+	line-height:38px;
+	height:38px;
+	border-bottom:1px solid #eee;
+	}
+
+/*xinw*/
+.ti{
+	margin: 10px 0;
+	border-top:2px solid #1388ff;
+	text-align:center;
+	padding:10px 0;
+	border-bottom:1px dashed #999;
+	}
+.tit{
+	font-size:18px;
+	line-height:32px;}
+.tis {
+	color:#999;
+	font-size:12px;
+	}
+.news_img{width:670px;}
+.text {
+	color:#666;
+	font-family: "宋体";
+	font-size:16px;
+	line-height:20px;
+	padding:10px;
+	word-wrap:break-word;
+	width:96%;}
+.text strong{
+	font-size:18px;
+}
+/*lieb*/
+.tip{
+	padding-left:10px;
+	color:#999;
+	font-size:12px;
+	}
+.num{
+	color:#1388ff;
+	font-size:16px;}
+.table {
+	padding:10px;
+    width:98%;
+    position:relative;
+    padding-bottom:40px;
+}
+.tab {width:100%;
+}
+.tab_tr {
+	background-color:#d9ebff;
+	height:43px;
+	text-align: center
+}
+.tab_th {border-top:2px solid #1388ff;
+         border-bottom:1px solid #ccc;
+         padding-top: 15px;
+         text-align: center
+        }
+.tab_th div {
+	font-weight:normal;
+    color:#333;
+    padding:0 10px;
+    line-height:30px;}
+.tab_body {}
+.tab_td {
+	height:38px;
+	border-bottom:1px solid #ccc;
+	padding-top: 15px;
+    text-align:center;
+    }
+.tab_td div {
+	font-weight:normal;
+color:#555;
+line-height:28px;}
+.trodd {
+	background-color:#f6f6f6;
+	}
+.fyTitle{
+	color: #fff;
+	width:580px;
+	height: auto;
+	padding-bottom:10px;
+    font: 18px/40px "Microsoft YaHei";
+    background-color: #5d9cec;
+}
+.fyTitle a{
+	font-size:13px;
+	color:#fff;
+}
+.fyTitle h3{
+	float:left;
+	padding: 0 15px;
+    height: 40px;
+    font: 18px/40px "Microsoft YaHei";
+    background-color: #5d9cec;
+}
+.fyTitle h4{
+	float:left;
+	padding: 0 15px 10px 10px;
+    height: 20px;
+    
+    font: 15px/40px "Microsoft YaHei";
+    background-color: #5d9cec;
+}
+.fyTitle h4 a{
+	color:#fff;
+}
+.fyTitle h4 a:hover{
+	color:#f90;
+}
+/*审判流程子页面的标题*/
+.splcTitle{
+	color: #fff;
+	width:100%;
+	height: auto;
+	padding-bottom:10px;
+    font: 18px/40px "Microsoft YaHei";
+    background-color: #5d9cec;
+    overflow:hidden
+}
+.splcTitle h3{
+	float:left;
+	padding: 0 15px;
+    height: 40px;
+    font: 18px/40px "Microsoft YaHei";
+    background-color: #5d9cec;
+}
+.splcCont{
+	padding: 0 15px 10px 10px;
+    height: auto;
+    font: 15px/40px "Microsoft YaHei";
+    overflow:hidden;
+}
+.splcCont h4{
+	padding: 10px 15px 10px 10px;
+    height: auto;
+    font: 20px/40px "Microsoft YaHei";
+    
+}
+.splcCont p{
+	float:left;
+	padding: 0 15px 10px 10px;
+    height: auto;
+    font: 15px/40px "Microsoft YaHei";
+    
+}
+.splcTitle a{
+	color:#fff;
+}
+.splcTitle a:hover{
+	color:#f90;
+}
+.fyzyCont {
+	padding:10px;
+	line-height:39px;
+}
+.fygk {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+}
+.fygk h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+.gxfw {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+	
+}
+.gxfw h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+.bmjzn {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+}
+.bmjzn h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+.swhzcry {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+}
+.swhzcry h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+.fydz {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+}
+.fydz h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+.tsqd {
+	
+	folat:left;
+	width:580px;
+	height:auto;
+	border:1px solid #ccc;
+	margin-top:10px
+}
+.tsqd h4 {
+	padding:10px;
+	border-bottom: 5px solid #4966a1;
+    color: #4966a1;
+    font: 22px/40px "Microsoft YaHei";
+}
+/*活动导航定位栏*/
+#rightNav{width:130px;height:auto;background-color:#fff;margin:70px 30px 0 30px;float:right;}
+#rightNav ul li{
+	position:relative;
+	height:auto;
+	width:130px;
+	line-height:50px;
+	background-color:#eeeeee;
+	margin-top: 1px;
+}
+#rightNav ul li:hover{
+	border-left: 3px solid #1388ff;font-weight: bold;
+}
+#rightNav ul li.adv_active{
+	background-color:#1388ff;
+}
+#rightNav .wrap{width:130px;height:auto;background-color:#fff;}
+#rightNav a{display:block;text-align:center;}
+/* #rightNav a ins{display:block;width:52px;margin:0 auto;background:url(../images/souche_sprite2.jpg) no-repeat 10px -334px}*/
+#rightNav a span{position:absolute;width:20px;}
+#rightNav .adv_active a{background-color:#1388ff;color:#fff}
+#rightNav a:hover{text-decoration:none;background-color:#fff;color:#F60;}
+/*#rightNav a:hover ins,#rightNav .adv_active ins{background:url(../images/souche_service1.png) no-repeat 10px -190px}
+#rightNav a:hover span,#rightNav .adv_active span{background:url(../images/souche_png.png) no-repeat 0 -90px;left:76px;bottom:-10px;_background:none}*/
+#rightNav .adv_source ins{background-position:-49px -334px}
+#rightNav .adv_price ins{background-position:-101px -334px}
+#rightNav .adv_transfer ins{background-position:-155px -334px}
+#rightNav .adv_payment ins{background-position:-202px -334px}
+#rightNav .adv_promise ins{background-position:-251px -334px}
+#rightNav .adv_ride ins{background-position:-301px -334px}
+#rightNav .adv_finance ins{background-position:-349px -334px}
+#rightNav .adv_source:hover ins,#rightNav .adv_active .adv_source ins{background-position:-49px -191px}
+#rightNav .adv_price:hover ins,#rightNav .adv_active .adv_price ins{background-position:-101px -191px}
+#rightNav .adv_transfer:hover ins,#rightNav .adv_active .adv_transfer ins{background-position:-155px -191px}
+#rightNav .adv_payment:hover ins,#rightNav .adv_active .adv_payment ins{background-position:-202px -191px}
+#rightNav .adv_promise:hover ins,#rightNav .adv_active .adv_promise ins{background-position:-251px -191px}
+#rightNav .adv_ride:hover ins,#rightNav .adv_active .adv_ride ins{background-position:-301px -191px}
+#rightNav .adv_finance:hover ins,#rightNav .adv_active .adv_finance ins{background-position:-349px -191px}
+.fixedSubNav{position:fixed;top:25%;left:71%;}
+/*诉讼指南导航栏*/
+#rightNav_sszn{width:20%;height:auto;background-color:#000;margin:70px 10px 0 10px;float:right;}
+#rightNav_sszn ul{background-color:#eeeeee;}
+#rightNav_sszn li{position:relative;height:auto;line-height:50px}
+#rightNav_sszn .wrap{width:100%;height:auto}
+#rightNav_sszn a{display:block;width:100%;text-align:center;height:100%;}
+/* #rightNav_sszn a ins{display:block;width:52px;margin:0 auto;background:url(../images/souche_sprite2.jpg) no-repeat 10px -334px}*/
+#rightNav_sszn a span{position:absolute;width:20px;}
+#rightNav_sszn .adv_active a{background-color:#1388ff;color:#fff}
+#rightNav_sszn a:hover{text-decoration:none;background-color:#fff;color:#F60;border-left: 3px solid #1388ff;}
+/*#rightNav_sszn a:hover ins,#rightNav_sszn .adv_active ins{background:url(../images/souche_service1.png) no-repeat 10px -190px}
+#rightNav_sszn a:hover span,#rightNav_sszn .adv_active span{background:url(../images/souche_png.png) no-repeat 0 -90px;left:76px;bottom:-10px;_background:none}*/
+#rightNav_sszn .adv_source ins{background-position:-49px -334px}
+#rightNav_sszn .adv_price ins{background-position:-101px -334px}
+#rightNav_sszn .adv_transfer ins{background-position:-155px -334px}
+#rightNav_sszn .adv_payment ins{background-position:-202px -334px}
+#rightNav_sszn .adv_promise ins{background-position:-251px -334px}
+#rightNav_sszn .adv_ride ins{background-position:-301px -334px}
+#rightNav_sszn .adv_finance ins{background-position:-349px -334px}
+#rightNav_sszn .adv_source:hover ins,#rightNav_sszn .adv_active .adv_source ins{background-position:-49px -191px}
+#rightNav_sszn .adv_price:hover ins,#rightNav_sszn .adv_active .adv_price ins{background-position:-101px -191px}
+#rightNav_sszn .adv_transfer:hover ins,#rightNav_sszn .adv_active .adv_transfer ins{background-position:-155px -191px}
+#rightNav_sszn .adv_payment:hover ins,#rightNav_sszn .adv_active .adv_payment ins{background-position:-202px -191px}
+#rightNav_sszn .adv_promise:hover ins,#rightNav_sszn .adv_active .adv_promise ins{background-position:-251px -191px}
+#rightNav_sszn .adv_ride:hover ins,#rightNav_sszn .adv_active .adv_ride ins{background-position:-301px -191px}
+#rightNav_sszn .adv_finance:hover ins,#rightNav_sszn .adv_active .adv_finance ins{background-position:-349px -191px}
+#page {
+    margin: 10px 20px 10px 10px;
+    width: 98%;
+}
+
+.menu_list{width:100%;margin:0 auto;backguound: #fff;}
+.menu_head{
+	height: 47px;
+	line-height: 47px;
+	padding-left: 20px;
+	font-size: 14px;
+	color: #525252;
+	cursor: pointer;
+	border-left: 1px solid #e1e1e1;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #F1F1F1;
+	position: relative;
+	margin: 0px;
+	font-weight: bold;
+	background: #f1f1f1 url('../files/rightNavi/images/pro_left.png') center right no-repeat;
+}
+.menu_head_1{
+	height: 47px;
+	line-height: 47px;
+	padding-left: 20px;
+	font-size: 14px;
+	color: #525252;
+	cursor: pointer;
+	border-left: 1px solid #e1e1e1;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #F1F1F1;
+	position: relative;
+	margin: 0px;
+	font-weight: bold;
+	background: #f1f1f1;
+}
+.menu_head_1 h3:hover{
+	border-left:3px solid #1388ff;
+	backguound: #fff;
+}
+
+.menu_list .current{background:#fff url('../files/rightNavi/images/pro_down.png') center right no-repeat;}
+.menu_list  h3:hover{
+	border-left:3px solid #1388ff;
+	backguound: #f1f1f1;
+}
+.menu_body{
+	line-height: 38px;
+	border-left: 1px solid #e1e1e1;
+	backguound: #fff;
+	border-right: 1px solid #e1e1e1;
+	
+}
+.menu_body a{display:block;height:38px;line-height:25px;padding-left:38px;color:#777777;background:#f1f1f1;text-decoration:none;border-bottom:1px solid #e1e1e1;}
+.menu_body a:hover{
+	text-decoration:none;
+	backguound-color: #fff;
+	border-left:3px solid #1388ff;
+}
+.p1{
+	padding:0px 30px 30px 30px;
+	
+	
+}
+.p1 h2{
+	font-size:14px;
+	line-height:32px;
+}
+.p1 h3{
+	font-size:14px;
+	line-height:32px;
+}
+.p1 p{
+	font-size:12px;
+	padding-left:10px;
+	line-height:20px;
+}
+.iw_poi_title {
+	color:#CC5522;
+	font-size:14px;
+	font-weight:bold;
+	overflow:hidden;
+	padding-right:13px;
+	white-space:nowrap
+	}
+.iw_poi_content {
+	font:12px arial,sans-serif;
+	overflow:visible;
+	padding-top:4px;
+	white-space:-moz-pre-wrap;
+	word-wrap:break-word
+	}

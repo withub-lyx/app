@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="es" dynamicConfig="true">
+
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <cache name="wechat_ticket"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="5000"
+           timeToIdleSeconds="0"
+           statistics="true"/>
+
+    <!--shior权限缓存-->
+    <cache name="shiro-data"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true"/>
+
+
+
+    <cache name="test"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="5"
+           timeToIdleSeconds="0"
+           statistics="true"/>
+
+
+
+
+    <cache name="common_ehcache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true"/>
+<!--7200 -->
+    <defaultCache
+            maxEntriesLocalHeap="10000"
+            overflowToDisk="false"
+            eternal="false"
+            diskPersistent="false"
+            timeToLiveSeconds="0"
+            timeToIdleSeconds="0"
+            statistics="true">
+        <!--  cacheEventListenerFactory class="net.oschina.j2cache.ehcache.EhCacheEventListenerFactory"/-->
+    </defaultCache>
+</ehcache>

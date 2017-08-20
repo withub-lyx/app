@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/rightNavi.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${resSys}/echarts/build/dist/echarts.js"></script>
+<script src="${resSys}/echarts/jquery.min.js"></script>
+
+   <!--<script src="js/echarts.js"></script>
+    <script src="/echarts/build/source/chart/map.js"></script>
+   <script src="${resSys}/echarts/util/mapData/params.js"></script>
+     <link href="${resSys}/echarts/asset/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/bootstrap.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/carousel.css" rel="stylesheet">
+    <script src="${resSys}/echarts/build/source/echarts-all.js"></script>
+    <script src="${resSys}/echarts/build/source/chart/map.js"></script>
+    <script src="${resSys}/echarts/asset/js/codemirror.js"></script>
+    <script src="${resSys}/echarts/asset/js/javascript.js"></script>
+    <link href="${resSys}/echarts/asset/css/codemirror.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/monokai.css" rel="stylesheet">-->
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+});
+</script>
+</head>
+<body>
+<div class="wapper">
+[#include "../include/header.html"/]
+[#include "../include/navi_flfg.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+        <!-- 国内新闻_begin -->
+           <div class="contentssfw">
+		   <div class="innerssfw">
+			<div class="subnav">
+				<ul>
+				    [@cms_channel_list count='12' orderBy='4' titLen='20' parentId='1' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                       [#if a.title=="法院指引"]
+                        <li class="active">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                        [#else]
+                        <li>
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                       [/#if]
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+			</div>
+			<div class="conts">
+				<div style="width:100%;">
+					<div class="locat">
+						<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+					</div>
+					<div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+					<br style="clear:both;">
+				</div>
+			<div class="titles">法院指引 </div>
+			<div class="tex">
+			<div id="mainMap" style="float:left;width:65%;height:500px;border:1px solid #ccc;padding:10px;margin:10px"></div>
+			<div id="rightTitle" style="float:right;width:25%;height:auto;margin:50px 10px 10px 10px;">
+	                                            <div class="dl_03">
+                                                     <ul>
+                                                     [@cms_content_list count='30' titLen='15' orderBy='1' channelId='11' channelOption='1' dateFormat='yyyy-MM-dd']
+		 												 [#list tag_list as a]
+		 												 [#if a.title="海南省高级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="海南省第一中级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="海南省第二中级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="海口市中级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="三亚市中级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="海口海事法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	
+		 												 [#if a.title="三沙市中级人民法院"]
+		 													 <li><a href="${a.url}">[@text_cut s=a.title len=22 /]</a></li>
+		 												 [/#if]	 
+		 												 [/#list]
+		 											 [/@cms_content_list]
+                                                     
+                                                     </ul>
+                                                    </div>
+                                                		
+			    </div>
+			    </div>
+			    
+			</div>
+		</div>
+	  </div>
+        <!-- 国内新闻_end -->
+           <div class="clear"></div>
+         </div>
+         <div style="clear:both"></div>
+    <!-- 左栏_end -->
+</div>
+[#include "../include/footer.html"/]
+</div>
+<script type="text/javascript">
+require.config({
+    paths: {
+    	 //echarts: './js'
+        echarts: '${resSys}/echarts/build/source'
+    }
+});
+
+// Step:4 require echarts and use it in the callback.
+// Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+
+
+require(
+    [
+        'echarts',
+        'echarts/chart/map',
+        'echarts/chart/bar'
+    ],
+    function (ec) {
+    	var theme = {
+    		    // 默认色板
+    		    color: [
+    		        '#1790cf','#1bb2d8','#99d2dd','#88b0bb',
+    		        '#1c7099','#038cc4','#75abd0','#afd6dd'
+    		    ],
+                
+    		    
+    		    map: {
+    		        itemStyle: {
+    		            normal: {
+    		                areaStyle: {
+    		                    color: '#48C1DF'
+    		                },
+    		                label: {
+    		                    textStyle: {
+    		                        color: '#FFFFFF'
+    		                    }
+    		                }
+    		            },
+    		            emphasis: {                 // 也是选中样式
+    		                areaStyle: {
+    		                    color: '#99d2dd'
+    		                },
+    		                label: {
+    		                    textStyle: {
+    		                        color: '#c12e34'
+    		                    }
+    		                }
+    		            }
+    		        }
+    		    },
+    		    textStyle: {
+    		        fontFamily: '微软雅黑, Arial, Verdana, sans-serif'
+    		    }
+    	};
+        var mapMyChart = ec.init(document.getElementById('mainMap'),theme);
+        var ecConfig = require('echarts/config');
+	    var zrEvent = require('zrender/tool/event');
+        option = {
+        	    tooltip : {
+        	        trigger: 'item',
+        	        formatter: '{b}'
+        	    },
+        	    series : [
+        	        {
+        	            name: '中国',
+        	            type: 'map',
+        	            mapType: '海南',
+        	            selectedMode : 'single',
+        	            itemStyle:{
+        	                normal:{label:{show:true}},
+        	                emphasis:{label:{show:true}},
+        	           
+        	            },
+        	            data:[      	                
+        	            ]
+        	        }
+        	    ]
+        	};
+        mapMyChart.on(ecConfig.EVENT.CLICK,function (param){
+        	//document.getElementById('mainMap').style.display='none';
+        	//document.getElementById('rightTitle').style.display='none';
+        	//document.getElementById('rightNav').style.display='block';
+        	//document.getElementById('fyTitle').innerHTML='<h3>'+param.name+'人民法院</h3>'
+        	
+        	if("海口市"==param.name){
+        		window.location.href="${base}/fyzy/585.jhtml";
+        	}
+        	if("文昌市"==param.name){
+        		window.location.href="${base}/fyzy/611.jhtml";
+        	}
+        	if("澄迈县"==param.name){
+        		window.location.href="${base}/fyzy/630.jhtml";
+        	}
+        	if("临高县"==param.name){
+        		window.location.href="${base}/fyzy/621.jhtml";
+        	}
+        	if("儋州市"==param.name){
+        		window.location.href="${base}/fyzy/618.jhtml";
+        	}
+        	if("安定县"==param.name){
+        		window.location.href="${base}/fyzy/614.jhtml";
+        	}
+        	if("屯昌县"==param.name){
+        		window.location.href="${base}/fyzy/616.jhtml";
+        	}
+        	if("琼海市"==param.name){
+        		window.location.href="${base}/fyzy/615.jhtml";
+        	}
+        	if("白沙黎族自治县"==param.name){
+        		window.location.href="${base}/fyzy/622.jhtml";
+        	}
+        	if("昌江黎族自治县"==param.name){
+        		window.location.href="${base}/fyzy/619.jhtml";
+        	}
+        	if("琼中黎族苗族自治县"==param.name){
+        		window.location.href="${base}/fyzy/632.jhtml";
+        	}
+        	if("东方市"==param.name){
+        		window.location.href="${base}/fyzy/617.jhtml";
+        	}
+        	if("五指山市"==param.name){
+        		window.location.href="${base}/fyzy/610.jhtml";
+        	}
+        	if("万宁市"==param.name){
+        		window.location.href="${base}/fyzy/612.jhtml";
+        	}
+        	if("乐东黎族自治县"==param.name){
+        		window.location.href="${base}/fyzy/620.jhtml";
+        	}
+        	if("保亭黎族自治县"==param.name){
+        		window.location.href="${base}/fyzy/631.jhtml";
+        	}
+        	if("陵水黎族自治县"==param.name){
+        		window.location.href="${base}/fyzy/613.jhtml";
+        	}
+        	if("三亚市"==param.name){
+        		window.location.href="${base}/fyzy/586.jhtml";
+        	}
+        	if("三沙市"==param.name){
+        		window.location.href="${base}/fyzy/589.jhtml";
+        	}
+        	
+        	
+        })
+		   mapMyChart.setOption(option,true);
+				
+   /*     mapMyChart.setOption({
+            tooltip : {
+                trigger: 'item',
+                formatter: '{b}'
+            },
+            series : [
+                {
+                    name: '中国',
+                    type: 'map',
+                    mapType: '江西',
+                    selectedMode : 'multiple',
+                    itemStyle:{
+                        normal:{label:{show:true}},
+                        emphasis:{label:{show:true}}
+                    },
+                    data:[
+                        {name:'南昌市',selected:true}
+                    ]
+                }
+            ]
+        });*/
+    });
+    function gotoFyDetail(value){
+    	//隐藏地图和法院列表
+    	document.getElementById('mainMap').style.display='none';
+    	document.getElementById('rightTitle').style.display='none';
+    	document.getElementById('rightNav').style.display='block';
+    	//得到所有法院介绍列表
+    	var tex = document.getElementsByClassName("texFyzy");
+    	for(var i=0;i<tex.length;i++){
+    		var string1 = tex[i].innerHTML.split("<h3>");
+    		var string2 = string1[1].split("</h3>");
+    		var fymc = string2[0];
+    		//当列表中的title与法院名相同时则显示
+    		if(fymc==value){
+    			tex[i].style.display='block';
+    		}
+    		else{
+    			tex[i].style.display='none';
+    		}
+    		
+    	}
+    };
+    function returnToMap(){
+    	var tex = document.getElementsByClassName("texFyzy");
+    	for(var i=0;i<tex.length;i++){
+    	    tex[i].style.display='none';
+    	}
+    	document.getElementById('mainMap').style.display='block';
+    	document.getElementById('rightTitle').style.display='block';
+    }
+    
+</script>
+
+</body>
+</html>

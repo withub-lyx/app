@@ -1,0 +1,60 @@
+<link href="/${res}/files/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+/*$(function() {
+	$(".navli a").click(function(){
+		$(this).parent().addClass("active");
+	})
+})*/
+</script>
+<div class="nav">
+<div style="width: 1000px;margin:0 auto;">
+<ul>
+
+<li class="navli"><a href="${site.url!}">首页</a></li>
+[@cms_channel_list]
+[#list tag_list as c]
+        [#if c_index<6]
+        <li class="navli">
+        <a href="${c.url}" class="navli_a">${c.name}</a>
+        [#if c.name=="诉讼服务"]
+               <ul class="navi_xl">
+				    [@cms_channel_list count='12' orderBy='4' titLen='20' parentId='1' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                       <li class="navi_xl_li">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                       </li>
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+        [/#if]
+        [#if c.name=="审判流程"]
+               <ul class="navi_xl">
+				    [@cms_channel_list count='12' orderBy='4' titLen='20' parentId='74' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                       <li class="navi_xl_li">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                       </li>
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+        [/#if]
+        [#if c.name=="执行信息"]
+               <ul class="navi_xl">
+				    [@cms_channel_list count='12' orderBy='4' titLen='20' parentId='76' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                       <li class="navi_xl_li">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                       </li>
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+        [/#if]
+        </li>
+        [/#if]
+        [/#list]
+[/@cms_channel_list]
+
+</ul>
+</div>
+</div>
+<!--end nav-->

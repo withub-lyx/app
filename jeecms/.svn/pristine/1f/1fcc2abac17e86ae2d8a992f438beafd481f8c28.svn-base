@@ -1,0 +1,1437 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/${res}/files/tree/tree_files/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/${res}/files/tree/tree_files/ace.min.css">
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/rightNavi.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<!--[if !IE]> -->
+<script src="/${res}/files/tree/tree_files/jquery-2.0.3.min.js"></script>
+<!-- <![endif]-->
+<script src="/${res}/files/tree/tree_files/bootstrap.min.js"></script>
+<!-- page specific plugin scripts -->
+<script src="/${res}/files/tree/tree_files/fuelux.tree-sampledata.js"></script>
+<script src="/${res}/files/tree/tree_files/fuelux.tree.min.js"></script>
+<!-- ace scripts -->
+<script src="/${res}/files/tree/tree_files/ace-elements.min.js"></script>
+<script src="/${res}/files/tree/tree_files/ace.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+	xOffset = 0;//向右偏移量
+    yOffset = 30;//向下偏移量
+    var toshow = "widget-box";//要显示的层的id
+    var target = "case_name";//目标控件----也就是想要点击后弹出树形菜单的那个控件id
+    $("#"+target).click(function (){
+    	$("#"+toshow)
+    	.css("position", "absolute")
+    	.css("left", $("#"+target).position().left+ "px")
+    	.css("top", $("#"+target).position().top+yOffset +"px").show();
+    	//$("#"+toshow).show();
+    	//.css("position", "absolute")
+    	//.css("left", $("#"+target).position().left+xOffset + "px")
+    	//.css("top", $("#"+target).position().top+yOffset +"px").show();
+    	//.css("position", "absolute")
+    	//.css("left", $("#"+target).position().left+xOffset + "px")
+    	//.css("top", $("#"+target).position().top+yOffset +"px").show();
+    });
+  //点击body关闭弹出层
+	$(document).click(function(event){
+ 		var is = checkIn(toshow,event);
+ 		if(!is){
+ 			$("#"+toshow).hide();
+ 			//document.getElementById("tab").innerHTML=null;
+ 		}
+ 	});
+	$('#tree1').ace_tree({
+		dataSource: treeDataSource ,
+		multiSelect:false,
+		loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+		'open-icon' : 'icon-minus',
+		'close-icon' : 'icon-plus',
+		'selectable' : true,
+		'selected-icon' : 'icon-ok',
+		'unselected-icon' : 'icon-remove'
+	});
+	
+	 $('#tree1').on('selected', function(evt, data) {
+		 $("#table2").hide();
+		 $("#tr1").hide();
+		 $("#tr2").hide();
+		 $("#tr3").hide();
+		 $("#table3").hide();
+		 var array = new Array();
+		 var result;
+		 var text;
+		 $('#tree1').find(".tree-folder-content").each(function(){
+			 $(this).find('.tree-item').each(function(){
+				 if($(this).hasClass("tree-selected")){
+					array[0] = $(this).text().trim();
+					array[1] = $(this).parent('.tree-folder-content').siblings('.tree-folder-header').find('.tree-folder-name').text().trim(); 
+					//当所选节点为三级节点时
+					if($(this).parent('.tree-folder-content').parent().parent().hasClass('tree-folder-content')){
+						array[2] = $(this).parent('.tree-folder-content').parent().parent().siblings('.tree-folder-header').find('.tree-folder-name').text().trim();
+						text = array[2]+"<<"+array[1]+"<<"+array[0];
+					}
+					else{
+						text = array[1]+"<<"+array[0];
+					}
+					$("#case_name").val(text);
+					//$("#table1").show();
+				}
+			 })
+		})
+		var lx = $("#case_name").val();
+    	 for(var i = 0 ; i<caseList.length; i++){
+    		 if(caseList[i]==lx){
+    			 switch(i){
+    			 case 0:result = 0;
+    			 		//alert("该案件类型不需要交纳诉讼费！");
+    			        $("#page1").text("该案件类型不需要交纳诉讼费！");
+    			        $("#tr1").show();
+    			        $("#table3").show();
+    			        break;
+    			 case 1:result = 0;
+    			 		//alert("该案件类型不需要交纳诉讼费！");
+			             $("#page1").text("该案件类型不需要交纳诉讼费！");
+			             $("#tr1").show();
+			             $("#table3").show();
+			            break;
+    			 case 2:result = 0;
+    			 		//alert("该案件类型不需要交纳诉讼费！");
+			            $("#page1").text("该案件类型不需要交纳诉讼费！");
+			            $("#tr1").show();
+			            $("#table3").show();
+			            break;
+    			 case 3:result = 0;
+    			 		//alert("该案件类型不需要交纳诉讼费！");
+			            $("#page1").text("该案件类型不需要交纳诉讼费！");
+			            $("#tr1").show();
+			            $("#table3").show();
+			            break;
+    			 case 4:result = 50;
+    			        //alert("标的额小于10000元需交纳50元！");
+    			        $("#page1").text("标的额小于10000元需交纳50元！");
+			            $("#tr1").show();
+			            $("#table3").show();
+    			        break;
+    			 case 14:result = "";
+    			 		//alert("该案件类型交纳诉讼费一般为50~300元！");
+    			 		$("#page1").text("该案件类型交纳诉讼费一般为50~300元！");
+		            	$("#tr1").show();
+		            	$("#table3").show();
+    			 		break;
+    			 case 15:result = 200;
+    			      //alert("该案件类型交纳诉讼费一般为200元！");
+    			      $("#page1").text("该案件类型交纳诉讼费一般为200元！");
+		              $("#tr1").show();
+		              $("#table3").show();
+    			      break;
+    			 case 17:result = 0;
+    			 		
+    			 		//alert("该案件类型交纳诉讼费一般为100~500元！");
+    			 		$("#page1").text("该案件类型交纳诉讼费一般为100~500元！");
+	            		$("#tr1").show();
+	            		$("#table3").show();
+	            		break;
+    			 case 18:result = 300;
+    			 		//alert("该案件类型交纳诉讼费一般为300元！");
+    			 		$("#page1").text("该案件类型交纳诉讼费一般为300元！");
+         				$("#tr1").show();
+         				$("#table3").show();
+         				break;
+    			 case 21:result = 0;
+    			 		//alert("其他类型非财产案件收费一般在50~100元之间");
+    			 		$("#page1").text("其他类型非财产案件收费一般在50~100元之间");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 22:result = 100;
+    			 		//alert("这种案件类型收费为100元");
+    			 		$("#page1").text("这种案件类型收费为100元");
+						$("#tr1").show();
+						$("#table3").show();
+    			 		break;
+    			 case 23:result = 50;
+    			 		//alert("这种案件类型收费为50元");
+    			 		$("#page1").text("这种案件类型收费为50元");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 24:result = 0;
+    			 		//alert("这种案件类型收费为500~1000元之间");
+    			 		$("#page1").text("这种案件类型收费为500~1000元之间");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 26:result = "50~100";
+    			 		//alert("这种案件类型收费为50~100元之间");
+    			 		$("#page1").text("这种案件类型收费为50~100元之间");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 27:result = 50;
+    			 		//alert("这种案件类型收费为50元");
+	 					$("#page1").text("这种案件类型收费为50元");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 33:result = 30;
+    			 		//alert("这种案件类型收费为50元");
+						$("#page1").text("这种案件类型收费为50元");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 case 37:result = 100;
+    			 		//alert("这种案件类型收费为100元");
+    			 		$("#page1").text("这种案件类型收费为100元");
+	             		$("#tr1").show();
+	             		$("#table3").show();
+    			 		break;
+    			 case 38:result = 400;
+    			 		//alert("这种案件类型收费为400元");
+    			 		$("#page1").text("这种案件类型收费为400元");
+          				$("#tr1").show();
+          				$("#table3").show();
+    			 		break;
+    			 case 42:result = 10;
+    			 		//alert("这种案件类型收费为10元");
+    			 		$("#page1").text("这种案件类型收费为10元");
+   						$("#tr1").show();
+   						$("#table3").show();
+    			 		break;
+    			 case 43:result = "50~100";
+    			 		//alert("这种案件类型收费为50~100元");
+    			 		$("#page1").text("这种案件类型收费为50~100元");
+						$("#tr1").show();
+						$("#table3").show();
+						break;
+    			 default:$("#table2").show();
+    			 		 break;
+    			 }
+    		 }
+    		 //$("#table3").show();
+    	 }
+		
+     });
+	  
+	 
+});
+
+var caseList = [
+        		"不交纳案件受理费的案件<<依照民事诉讼法规定的特别程序审理的案件",
+        		"不交纳案件受理费的案件<<裁定不予受理、驳回起诉、驳回上诉案件",
+        		"不交纳案件受理费的案件<<行政赔偿案件",
+        		"不交纳案件受理费的案件<<对不予受理、驳回起诉和管辖权异议裁定不服，提起上诉的案件",
+        		"财产案件<<不超过1万元",
+        		"财产案件<<超过1万-10万",
+        		"财产案件<<超过10万-20万",
+        		"财产案件<<超过20万-50万",
+        		"财产案件<<超过50万-100万",
+        		"财产案件<<超过100万-200万",
+        		"财产案件<<超过200万-500万",
+        		"财产案件<<超过500万-1000万",
+        		"财产案件<<超过1000万-2000万",
+        		"财产案件<<超过2000万",
+        		"非财产案件<<离婚<<一般情况",
+        		"非财产案件<<离婚<<涉及财产分割，财产总额不超过20万元人民币的",
+        		"非财产案件<<离婚<<超过20万的",
+        		"非财产案件<<侵害姓名权、名称权、肖像权、名誉权、荣誉权以及其他人格权的案件<<一般情况",
+        		"非财产案件<<侵害姓名权、名称权、肖像权、名誉权、荣誉权以及其他人格权的案件<<涉及损害赔偿，赔偿金额不超过5万元人民币的",
+        		"非财产案件<<侵害姓名权、名称权、肖像权、名誉权、荣誉权以及其他人格权的案件<<超过5万元人民币至10万元人民币的",
+        		"非财产案件<<侵害姓名权、名称权、肖像权、名誉权、荣誉权以及其他人格权的案件<<超过10万元人民币的",
+        		"非财产案件<<其他",
+        		"行政案件<<商标、专利、海事行政案件",
+        		"行政案件<<其他行政案件",
+        		"知识产权案件<<没有争议金额或者价额的",
+        		"知识产权案件<<有争议金额或者价额的",
+        		"申请费<<执行申请费无需预交<<没有执行金额或者价额的",
+        		"申请费<<执行申请费无需预交<<不超过1万",
+        		"申请费<<执行申请费无需预交<<超过1万-50万",
+        		"申请费<<执行申请费无需预交<<超过50万-500万",
+        		"申请费<<执行申请费无需预交<<超过500万-1000万",
+        		"申请费<<执行申请费无需预交<<超过1000万",
+        		"申请费<<执行申请费无需预交<<未参加登记的权利人向人民法院提起诉讼的",
+        		"申请费<<申请保全措施<<财产数额不超过1000元人民币或者不涉及财产数额的",
+        		"申请费<<申请保全措施<<超过1000-10万",
+        		"申请费<<申请保全措施<<超过10万",
+        		"申请费<<申请支付令",
+        		"申请费<<申请公示催告",
+        		"申请费<<申请撤销仲裁裁决或者认定仲裁协议效力",
+        		"申请费<<申请破产",
+        		"其他类型案件收费标准<<以调解方式结案或者当事人申请撤诉的",
+        		"其他类型案件收费标准<<适用简易程序审理的",
+        		"其他类型案件收费标准<<劳动争议案件",
+        		"其他类型案件收费标准<<提出管辖异议，异议不成立的",
+        		"其他类型案件收费标准<<对财产案件提起上诉的",
+        		"其他类型案件收费标准<<被告提起反诉、有独立请求权的第三人提出与本案有关的诉讼请求，需合并审理的",
+        		"其他类型案件收费标准<<需要交纳案件受理费的再审案件"
+        		];
+        //搜索框输入后进行查询
+		function search(){
+        	 //$("#table1").hide();
+			 $("#table2").hide();
+			 $("#tr1").hide();
+			 $("#tr2").hide();
+			 $("#tr3").hide();
+			 $("#table3").hide();
+			 $("widget-box").show();
+	   		var caseName = $("#case_name").val();
+	   		var li="";
+	   		for(i in caseList){
+	   			if(caseList[i].includes(caseName)){
+	   				var newstr=caseList[i].replace(caseName,"<font color=red>"+caseName+"</font>"); 
+	   				li+="<li><a href='javascript:void(0)' onclick='showTab("+i+")'>"+newstr+"</a></li>"
+	   			}
+	   		}
+	   		document.getElementById("ul").innerHTML="<ul>"+li+"</ul>";
+	   		$("#ul").show();
+	   		$("#tree1").hide();
+	    }
+		//选择查询后的结果
+   function showTab(i){
+	   //$("#page").html(caseList[i]);
+	    $("#case_name").val(caseList[i]);
+		//$("#table1").show();
+		$("#table2").hide();
+		$("#tr1").hide();
+		$("#tr2").hide();
+		$("#tr3").hide();
+		$("#table3").hide();
+	switch(i){
+	case 0:result = 0;
+	 //alert("该案件类型不需要交纳诉讼费！");
+	        $("#page1").text("该案件类型不需要交纳诉讼费！");
+	        $("#tr1").show();
+	        $("#table3").show();
+	        break;
+	 case 1:result = 0;
+	 		//alert("该案件类型不需要交纳诉讼费！");
+            $("#page1").text("该案件类型不需要交纳诉讼费！");
+            $("#tr1").show();
+            $("#table3").show();
+            break;
+	 case 2:result = 0;
+	 		//alert("该案件类型不需要交纳诉讼费！");
+            $("#page1").text("该案件类型不需要交纳诉讼费！");
+            $("#tr1").show();
+            $("#table3").show();
+            break;
+	 case 3:result = 0;
+	 		//alert("该案件类型不需要交纳诉讼费！");
+            $("#page1").text("该案件类型不需要交纳诉讼费！");
+            $("#tr1").show();
+            $("#table3").show();
+            break;
+	 case 4:result = 50;
+	        //alert("标的额小于10000元需交纳50元！");
+	        $("#page1").text("标的额小于10000元需交纳50元！");
+            $("#tr1").show();
+            $("#table3").show();
+	        break;
+	 case 14:result = "";
+	 		//alert("该案件类型交纳诉讼费一般为50~300元！");
+	 		$("#page1").text("该案件类型交纳诉讼费一般为50~300元！");
+        	$("#tr1").show();
+        	$("#table3").show();
+	 		break;
+	 case 15:result = 200;
+	      //alert("该案件类型交纳诉讼费一般为200元！");
+	      $("#page1").text("该案件类型交纳诉讼费一般为200元！");
+          $("#tr1").show();
+          $("#table3").show();
+	      break;
+	 case 17:result = 0;
+	 		
+	 		//alert("该案件类型交纳诉讼费一般为100~500元！");
+	 		$("#page1").text("该案件类型交纳诉讼费一般为100~500元！");
+    		$("#tr1").show();
+    		$("#table3").show();
+    		break;
+	 case 18:result = 300;
+	 		//alert("该案件类型交纳诉讼费一般为300元！");
+	 		$("#page1").text("该案件类型交纳诉讼费一般为300元！");
+			$("#tr1").show();
+			$("#table3").show();
+				break;
+	 case 21:result = 0;
+	 		//alert("其他类型非财产案件收费一般在50~100元之间");
+	 		$("#page1").text("其他类型非财产案件收费一般在50~100元之间");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 22:result = 100;
+	 		//alert("这种案件类型收费为100元");
+	 		$("#page1").text("这种案件类型收费为100元");
+			$("#tr1").show();
+			$("#table3").show();
+	 		break;
+	 case 23:result = 50;
+	 		//alert("这种案件类型收费为50元");
+	 		$("#page1").text("这种案件类型收费为50元");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 24:result = 0;
+	 		//alert("这种案件类型收费为500~1000元之间");
+	 		$("#page1").text("这种案件类型收费为500~1000元之间");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 26:result = "50~100";
+	 		//alert("这种案件类型收费为50~100元之间");
+	 		$("#page1").text("这种案件类型收费为50~100元之间");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 27:result = 50;
+	 		//alert("这种案件类型收费为50元");
+				$("#page1").text("这种案件类型收费为50元");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 33:result = 30;
+	 		//alert("这种案件类型收费为50元");
+			$("#page1").text("这种案件类型收费为50元");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 case 37:result = 100;
+	 		//alert("这种案件类型收费为100元");
+	 		$("#page1").text("这种案件类型收费为100元");
+     		$("#tr1").show();
+     		$("#table3").show();
+	 		break;
+	 case 38:result = 400;
+	 		//alert("这种案件类型收费为400元");
+	 		$("#page1").text("这种案件类型收费为400元");
+			$("#tr1").show();
+			$("#table3").show();
+	 		break;
+	 case 42:result = 10;
+	 		//alert("这种案件类型收费为10元");
+	 		$("#page1").text("这种案件类型收费为10元");
+			$("#tr1").show();
+			$("#table3").show();
+	 		break;
+	 case 43:result = "50~100";
+	 		//alert("这种案件类型收费为50~100元");
+	 		$("#page1").text("这种案件类型收费为50~100元");
+			$("#tr1").show();
+			$("#table3").show();
+			break;
+	 default:$("#table2").show();
+	        break;
+			}
+	     
+		}
+     //输入案件标的后进行计算
+     function count(){
+    	 $("#table3").hide();
+    	 $("#page1").val(null);
+    	 $("#tr1").hide();
+    	 $("#page2").val(null);
+    	 $("#tr2").hide();
+    	 $("#page3").val(null);
+    	 $("#tr3").hide();
+    	 var reg=/^[-\+]?\d+(\.\d+)?$/;
+    	 var number = $("#number").val();
+    	 var dw = $("#category").val()//单位（元或者万元）
+    	 var result;
+    	 if(!reg.test(number)){
+    		 alert("输入金额必须为数字！");
+    		 return;
+    	 }
+    	 var lx = $("#case_name").val();
+    	 var ex = false;//鉴定输入类型是否存在
+    	 for(var i = 0 ; i<caseList.length; i++){
+    		 if(caseList[i]==lx){
+    			 ex = true;
+    			 switch(i){
+    			 case 5:result = number*dw*0.025-200;
+    			        if(number*dw<10000||number*dw>100000){
+    			        	alert("输入金额必须为1万到10万！");
+    			        	return;
+    			        	}
+    			        //alert("您选择的案件计算公式为：输入金额×2.5%-200\n您所需交纳的诉讼费为："+result+"元");
+    			        $("#page1").text("输入金额×2.5%-200");
+		                $("#tr1").show();
+		                var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			        break;
+    			 case 6:result = number*dw*0.02+300;
+    			        if(number*dw<100000||number*dw>200000){
+			        		alert("输入金额必须为10万到20万！");
+			        		return;
+			        	}
+    			        //alert("您选择的案件计算公式为：输入金额×2%+300\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×2%+300");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 7:result = number*dw*0.015+1300;
+    			 		if(number*dw<200000||number*dw>500000){
+			        		alert("输入金额必须为20万到50万！");
+			        		return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×1.5%+1300\n您所需交纳的诉讼费为："+result+"元");
+			       	 	$("#page1").text("输入金额×1.5%+1300");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 8:result = number*dw*0.01+3800;
+    			 		if(number*dw<500000||number*dw>1000000){
+			        		alert("输入金额必须为50万到100万！");
+			        		return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×1%+3800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×1%+3800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 9:result = number*dw*0.009+4800;
+    			 		if(number*dw<1000000||number*dw>2000000){
+			        		alert("输入金额必须为100万到200万！");
+			        		return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.9%+4800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×0.9%+4800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 10:result = number*dw*0.008+6800;
+    			 		if(number*dw<2000000||number*dw>5000000){
+			        		alert("输入金额必须为200万到500万！");
+			        		return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.8%+6800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×0.8%+6800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 11:result = number*dw*0.007+11800;
+    			 		if(number*dw<5000000||number*dw>10000000){
+			        	alert("输入金额必须为500万到1000万！");
+			        	return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.7%+11800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×0.7%+11800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 12:result = number*dw*0.006+21800;
+    			 		if(number*dw<10000000||number*dw>20000000){
+			        		alert("输入金额必须为1000万到2000万！");
+			        		return;
+			        	}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.6%+21800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×0.6%+21800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 13:result = number*dw*0.005+41800;
+    			 		if(number*dw<20000000){
+			        		alert("输入金额必须大于2000万！");
+			        		return;
+			        	  }
+    			 		//alert("您选择的案件计算公式为：输入金额×0.5%+41800\n您所需交纳的诉讼费为："+result+"元");
+			        	$("#page1").text("输入金额×0.5%+41800");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			       	 	break;
+    			 
+    			 case 16:result = (number*dw-200000)*0.005+200;
+    			 		if(number*dw<200000){
+		        			alert("输入金额必须大于20万！");
+		        			return;
+		        		}
+    			 		//alert("您选择的案件计算公式为：(输入金额-200000)×0.5%+200\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("(输入金额-200000)×0.5%+200");
+	                	$("#tr1").show();
+	                	var result2 = AmountLtoU(result);
+	                	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 
+    			 case 19:result = (number*dw-50000)*0.01+300;
+    			 		if(number*dw<50000||number*dw>100000){
+	        				alert("输入金额必须为5万到10万！");
+	        				return;
+	        			}
+    			 		//alert("您选择的案件计算公式为：(输入金额-50000)×1%+300\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额-50000)×1%+300");
+             			$("#tr1").show();
+             			var result2 = AmountLtoU(result);
+             			$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 20:result = (number*dw-100000)*0.005+500+300;
+    			 		if(number*dw<100000){
+     						alert("输入金额必须大于10万！");
+     						return;
+     					}
+    			 		//alert("您选择的案件计算公式为：(输入金额-100000)×0.5%+50000×1%+300\n您所需交纳的诉讼费为："+result+"元");
+		 				$("#page1").text("(输入金额-100000)×0.5%+50000×1%+300");
+      					$("#tr1").show();
+      					var result2 = AmountLtoU(result);
+      					$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 
+    			 case 25:result = "";
+    			 if(number*dw<10000){
+			 			result = 50;
+			 			//alert("标的额小于10000元需交纳50元！");
+			 			$("#page1").text("标的额小于10000元需交纳50元！");
+			            $("#tr1").show();
+	        		}
+			 		else if(number*dw>=10000&&number*dw<100000){
+			 			result = (number*dw*0.025-200);
+			 			//alert("您选择的案件计算公式为：输入金额×2.5%-200\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×2.5%-200");
+		                $("#tr1").show();
+		                var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=100000&&number*dw<200000){
+			 			result = (number*dw*0.02+300);
+			 			//alert("您选择的案件计算公式为：输入金额×2%+300\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×2%+300");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=200000&&number*dw<500000){
+			 			result = (number*dw*0.015+1300);
+			 			//alert("您选择的案件计算公式为：输入金额×1.5%+1300\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×1.5%+1300");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=500000&&number*dw<1000000){
+			 			result = (number*dw*0.01+3800);
+			 			//alert("您选择的案件计算公式为：输入金额×1%+3800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×1%+3800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=1000000&&number*dw<2000000){
+			 			result = (number*dw*0.009+4800);
+			 			//alert("您选择的案件计算公式为：输入金额×0.9%+4800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×0.9%+4800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=2000000&&number*dw<5000000){
+			 			result = (number*dw*0.008+6800);
+			 			//alert("您选择的案件计算公式为：输入金额×0.8%+6800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×0.8%+6800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=5000000&&number*dw<10000000){
+			 			result = (number*dw*0.007+11800);
+			 			//alert("您选择的案件计算公式为：输入金额×0.7%+11800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×0.7%+11800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=10000000&&number*dw<20000000){
+			 			result = (number*dw*0.006+21800);
+			 			//alert("您选择的案件计算公式为：输入金额×0.6%+21800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×0.6%+21800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=20000000){
+			 			result = (number*dw*0.005+41800);
+			 			//alert("您选择的案件计算公式为：输入金额×0.5%+41800\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("输入金额×0.5%+41800");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+    			 		break;
+    			 
+    			 case 28:result = number*dw*0.015-100;
+    			 		if(number*dw<10000||number*dw>500000){
+							alert("输入金额必须在1万到50万之间！");
+							return;
+						}
+    			 		//alert("您选择的案件计算公式为：输入金额×1.5%-100\n您所需交纳的诉讼费为："+result+"元");
+	 					$("#page1").text("输入金额×1.5%-100");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			        break;
+    			 case 29:result = number*dw*0.01+2400;
+    			 		if(number*dw<500000||number*dw>5000000){
+							alert("输入金额必须在50万到500万之间！");
+							return;
+						}
+    			 		//alert("您选择的案件计算公式为：输入金额×1%+2400\n您所需交纳的诉讼费为："+result+"元");
+						$("#page1").text("输入金额×1%+2400");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			        	break;
+    			 case 30:result = number*dw*0.005+27400;
+    			 		if(number*dw<5000000||number*dw>10000000){
+							alert("输入金额必须在500万到1000万之间！");
+							return;
+						}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.5%+27400\n您所需交纳的诉讼费为："+result+"元");
+						$("#page1").text("输入金额×0.5%+27400");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 31:result = number*dw*0.001+67400;
+    			 		if(number*dw<10000000){
+								alert("输入金额必须大于1000万！");
+								return;
+							}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.1%+67400\n您所需交纳的诉讼费为："+result+"元");
+						$("#page1").text("输入金额×0.1%+67400");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+						break;
+    			 case 32:result = number*dw*0.015-100;
+    			 		if(number*dw<10000){
+    			 			//alert("这种案件类型收费为50元");
+    			 			$("#page1").text("这种案件类型收费为50元");
+    						$("#tr1").show();
+						}
+    			 		else{
+    			 			//alert("您选择的案件计算公式为：输入金额×1.5%-100，最低为50元\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("输入金额×1.5%-100，最低为50元");
+    						$("#tr1").show();
+    						var result2 = AmountLtoU(result);
+    						$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();	
+    			 		}
+						break;
+    			 
+    			 case 34:result = number*dw*0.01+20;
+    			 		if(number*dw<1000||number*dw>100000){
+							alert("输入金额必须在1000到10万之间！");
+							return;
+							}
+    			 		//alert("您选择的案件计算公式为：输入金额×1%+20\n您所需交纳的诉讼费为："+result+"元");
+						$("#page1").text("输入金额×1%+20");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 			break;
+    			 case 35:result = number*dw*0.005+520;
+    			 		if(number*dw<100000){
+							alert("输入金额必须大于10万！");
+							return;
+							}
+    			 		//alert("您选择的案件计算公式为：输入金额×0.5%+520\n您所需交纳的诉讼费为："+result+"元");
+						$("#page1").text("输入金额×0.5%+520");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+						$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 36:result = "";
+    			 		if(number*dw<10000){
+    			 			result = 50/3;
+    			 			//alert("标的额小于10000元需交纳"+result+"元！");
+    			 			$("#page1").text("标的额小于10000元需交纳16.67元！");
+    			            $("#tr1").show();
+		        		}
+    			 		else if(number*dw>=10000&&number*dw<100000){
+    			 			result = (number*dw*0.025-200)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×2.5%-200)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×2.5%-200)/3");
+    		                $("#tr1").show();
+    		                var result2 = AmountLtoU(result);
+    		                $("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=100000&&number*dw<200000){
+    			 			result = (number*dw*0.02+300)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×2%+300)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×2%+300)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=200000&&number*dw<500000){
+    			 			result = (number*dw*0.015+1300)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×1.5%+1300)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×1.5%+1300)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=500000&&number*dw<1000000){
+    			 			result = (number*dw*0.01+3800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×1%+3800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×1%+3800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=1000000&&number*dw<2000000){
+    			 			result = (number*dw*0.009+4800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×0.9%+4800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×0.9%+4800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=2000000&&number*dw<5000000){
+    			 			result = (number*dw*0.008+6800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×0.8%+6800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×0.8%+6800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=5000000&&number*dw<10000000){
+    			 			result = (number*dw*0.007+11800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×0.7%+11800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×0.7%+11800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=10000000&&number*dw<20000000){
+    			 			result = (number*dw*0.006+21800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×0.6%+21800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×0.6%+21800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    			 		else if(number*dw>=20000000){
+    			 			result = (number*dw*0.005+41800)/3;
+    			 			result = result.toFixed(2);
+    			 			//alert("您选择的案件计算公式为：(输入金额×0.5%+41800)/3\n您所需交纳的诉讼费为："+result+"元");
+    			 			$("#page1").text("(输入金额×0.5%+41800)/3");
+    		             	$("#tr1").show();
+    		             	var result2 = AmountLtoU(result);
+    		             	$("#page2").val(result+"元");
+    			        	$("#tr2").show();
+    			        	$("#page3").val(result2);
+         					$("#tr3").show();
+    			 		}
+    		            break;
+    			 
+    			 case 39:result = "";
+    			 if(number*dw<10000){
+			 			result = 50/2;
+			 			//alert("标的额小于10000元需交纳25元");
+			 			$("#page1").text("标的额小于10000元需交纳25元");
+			            $("#tr1").show();
+	        		}
+			 		else if(number*dw>=10000&&number*dw<100000){
+			 			result = (number*dw*0.025-200)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×2.5%-200)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×2.5%-200)/2，最高不超过30万");
+		                $("#tr1").show();
+		                var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=100000&&number*dw<200000){
+			 			result = (number*dw*0.02+300)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×2%+300)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×2%+300)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=200000&&number*dw<500000){
+			 			result = (number*dw*0.015+1300)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×1.5%+1300)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×1.5%+1300)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=500000&&number*dw<1000000){
+			 			result = (number*dw*0.01+3800)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×1%+3800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×1%+3800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=1000000&&number*dw<2000000){
+			 			result = (number*dw*0.009+4800)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额0.9%+4800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×0.9%+4800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=2000000&&number*dw<5000000){
+			 			result = (number*dw*0.008+6800)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×0.8%+6800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×0.8%+6800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=5000000&&number*dw<10000000){
+			 			result = (number*dw*0.007+11800)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×0.7%+11800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×0.7%+11800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=10000000&&number*dw<20000000){
+			 			result = (number*dw*0.006+21800)/2;
+			 			//alert("您选择的案件计算公式为：(输入金额×0.6%+21800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×0.6%+21800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+			 		else if(number*dw>=20000000){
+			 			result = (number*dw*0.005+41800)/2;
+			 			if(result>300000){
+			 				result=300000
+			 			}
+			 			//alert("您选择的案件计算公式为：(输入金额×0.5%+41800)/2，最高不超过30万\n您所需交纳的诉讼费为："+result+"元");
+			 			$("#page1").text("(输入金额×0.5%+41800)/2，最高不超过30万");
+		             	$("#tr1").show();
+		             	var result2 = AmountLtoU(result);
+		             	$("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+			 		}
+    			 		break;
+    			 case 40:result = (number*dw*0.025-200)*0.5;
+    			        if(result<25){
+    			        	result=25;
+    			        }
+    			 		//alert("您选择的案件计算公式为：(输入金额×2.5%-200)/2\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("(输入金额×2.5%-200)/2");
+	             		$("#tr1").show();
+	             		var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+			        	$("#tr2").show();
+			        	$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 41:result = (number*dw*0.025-200)*0.5;
+    			 			if(result<25){
+			        		result=25;
+			        	}
+    			 		//alert("您选择的案件计算公式为：(输入金额×2.5%-200)/2\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("(输入金额×2.5%-200)/2");
+          				$("#tr1").show();
+          				var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+		        		$("#tr2").show();
+		        		$("#page3").val(result2);
+     					$("#tr3").show();
+		        		break;
+    			 case 44:result = number*dw*0.025-200;
+    			 		if(result<50){
+    			 			result=50;
+    			 		}
+    			 		//alert("您选择的案件计算公式为：输入金额×2.5%-200\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("输入金额×2.5%-200");
+   						$("#tr1").show();
+   						var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+	        			$("#tr2").show();
+	        			$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 45:result = (number*dw*0.025-200)*0.5;
+    			 		if(result<25){
+		        				result=25;
+		        			}
+    			 		//alert("您选择的案件计算公式为：(输入金额×2.5%-200)/2\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("(输入金额×2.5%-200)/2");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+     					$("#tr2").show();
+     					$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 case 46:result = number*dw*0.025-200;
+    			 		if(result<25){
+		        				result=25;
+		        		}
+    			 		//alert("您选择的案件计算公式为：输入金额×2.5%-200\n您所需交纳的诉讼费为："+result+"元");
+    			 		$("#page1").text("输入金额×2.5%-200");
+						$("#tr1").show();
+						var result2 = AmountLtoU(result);
+		                $("#page2").val(result+"元");
+     					$("#tr2").show();
+     					$("#page3").val(result2);
+     					$("#tr3").show();
+    			 		break;
+    			 default:result=0;break;
+    			 }
+    		 }
+    	 }
+    	 if(!ex){
+    		 alert("您选择的案件类型有误，请重新选择！");
+    		 return;
+    	 }
+    	 $("#table3").show();
+    	 
+     }
+     //重置输入金额
+     function reset(){
+    	 $("#number").val(null);
+    	 var categary = document.getElementById("category");//mySelect是select 的Id
+    	 category.options[0].selected = true;
+    	 $("#table3").hide();
+    	 $("#page1").val(null);
+    	 $("#tr1").hide();
+    	 $("#page2").val(null);
+    	 $("#tr2").hide();
+    	 $("#page3").val(null);
+    	 $("#tr3").hide();
+    	 
+     };
+     //重置查询条件
+     function resetInput(){
+ 		$("#case_name").val(null);
+ 		document.getElementById("ul").innerHTML=null;
+ 		$("#ul").hide();
+ 		$("#tree1").show();
+ 		//$("#table1").hide();
+ 		$("#table2").hide();
+ 		$("#table3").hide();
+ 		}
+     
+     //金额转大写
+     function AmountLtoU(num) {
+        ///<summery>小写金额转化大写金额</summery>
+        ///<param name=num type=number>金额</param>
+        if(isNaN(num))return "无效数值！";
+        var strPrefix="";
+        if(num<0)strPrefix ="(负)";
+        num=Math.abs(num);
+        if(num>=1000000000000)return "无效数值！";
+        var strOutput = "";
+        var strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';
+        var strCapDgt='零壹贰叁肆伍陆柒捌玖';
+        num += "00";
+        var intPos = num.indexOf('.');
+        if (intPos >= 0){
+            num = num.substring(0, intPos) + num.substr(intPos + 1, 2);
+        }
+        strUnit = strUnit.substr(strUnit.length - num.length);
+        for (var i=0; i < num.length; i++){
+            strOutput += strCapDgt.substr(num.substr(i,1),1) + strUnit.substr(i,1);
+        }
+        return strPrefix+strOutput.replace(/零角零分$/, '整').replace(/零[仟佰拾]/g, '零').replace(/零{2,}/g, '零').replace(/零([亿|万])/g, '$1').replace(/零+元/, '元').replace(/亿零{0,3}万/, '亿').replace(/^元/, "零元");
+    };
+     
+     //判断鼠标在不在弹出层范围内
+      function   checkIn(id,evt){
+     	var yy = 34;   //偏移量
+     	var str = "";
+     	var   x=evt.clientX;   
+        var   y=evt.clientY; 
+        //fireFox不支持window.event
+     	//var   x=window.event.offsetX;   
+     	//var   y=window.event.offsetY;
+     	var obj=$("#"+id)[0];
+     	var pos = obj.getBoundingClientRect();//获取元素相对于屏幕的偏移量
+     	var submit_1 = $("#submit_1")[0];
+     	var pos_1 = submit_1.getBoundingClientRect();
+     	//if(x>obj.offsetLeft&&x<(obj.offsetLeft+obj.clientWidth)&&y>(obj.offsetTop-yy)&&y<(obj.offsetTop+obj.clientHeight)){ 
+     	if(x>pos.left&&x<(pos.left+obj.clientWidth)&&y>(pos.top-yy)&&y<(pos.top+obj.clientHeight)){   
+     		return true;
+     	}
+     	else if(x>pos_1.left&&x<(pos_1.left+submit_1.clientWidth)&&y>(pos_1.top-yy)&&y<(pos_1.top+submit_1.clientHeight)){
+     		return true;
+     	}
+     	else{   
+     	  return false;
+     	}   
+       }   
+     
+     
+</script>
+</head>
+<body>
+<div class="wapper">
+[#include "../include/header.html"/]
+[#include "../include/navi_ssfw.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+       <!-- 国内新闻_begin -->
+           <div class="contentssfw">
+		   <div class="innerssfw">
+			<div class="subnav">
+				<ul>
+					[@cms_channel_list count='12' orderBy='4' titLen='20' parentId='1' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                        [#if a.title=="诉讼费用"]
+                        <li class="active">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                        [#else]
+                        <li>
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                       [/#if]
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+			</div>
+			<div class="conts">
+				<div style="width:100%;">
+					<div class="locat">
+						<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+					</div>
+					<div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" ">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+					<br style="clear:both;">
+				</div>
+			<div class="titles">[#list channel.nodeList as n][#if !n_has_next] ${n.name} [/#if][/#list]</div>
+			<div class="tex">
+                <div style="height:auto;width:98%;position:relative;border: 1px solid rgb(204, 204, 204);margin:20px 0 20px 0">
+			    <div style="height:320px">
+			    <div class="splcTitle">
+			    <div style="float:left"><h3>诉费计算</h3></div>
+			    </div>
+			    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td bgcolor="#FFFFFF" valign="top" height="100%" align="center">
+		 				
+							<table width="100%" cellpadding="1" cellspacing="0" border="0" style="margin-top: 20px;">
+								<tr>
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">请输入案件类型：</span></td>
+									<td width="380px" align="left">
+										<input type="text" id="case_name"  class="case_name"> 
+										<input type="hidden" id="menu_parent" name="menu_parent"><!-- 父菜单id -->
+										<input type="hidden" id="oprate" name="oprate"><!-- radio -->
+										<input type="hidden" id="menu_id" name="menu_id"><!-- 父菜单id -->
+									</td>
+									<td width="auto" align="left">
+										<input type="submit" id="submit_1"class="search-button_ssfy" value="确定" onclick="search()">
+										<input type="reset" class="search-button_ssfy" value="重置" onclick="resetInput()">
+									</td>
+									
+								</tr>
+							</table>
+						
+						</td>
+					</tr>
+				</table>
+			    <div class="col-sm-6" id="col-sm-6">
+					<div class="widget-box" id="widget-box" style="display:none">
+						<div class="widget-body">
+							<div class="widget-main padding-8" id="tab">
+								<div id="tree1" class="tree tree-selectable">
+								</div>
+								<div id="ul"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  <div style="display:none" id="table1">
+				<table width="100%" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td bgcolor="#FFFFFF" valign="top" height="65%" align="center">
+		 				<form  method="post">
+							<table width="100%" cellpadding="1" cellspacing="0" border="0" style="margin-top: 20px;">
+								<tr>
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">您选择的案件类型为：</span></td>
+									<td width="auto" align="left" style="padding-right:35px"><span id="page" style="color:red;"></span>
+									</td>
+								</tr>
+							</table>
+						</form>
+						</td>
+					</tr>
+				</table>
+				</div>-->
+				<div id="table2" style="display:none">
+				<table width="100%" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td bgcolor="#FFFFFF" valign="top" height="65%" align="center">
+		 				      <table width="100%" cellpadding="1" cellspacing="0" border="0" style="margin-top: 10px;">
+								<tr>
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">请输入标的金额：</span></td>
+									<td width="100px" align="left">
+										<input type="text" id="number" placeholder="请输入数字" style="width: 98%;" /> 
+									</td>
+									<td width="80px" align="left">
+										<div style="float:left;padding: 0 0 5px 20px;margin-left: 10px;"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">单位 ：</span></div>
+									</td>
+									<td width="70px" align="left">
+										<select name="category" id="category">
+              			         			<option value="1" selected="selected">元</option>
+              			         			<option value="10000">万元</option>
+             			     			</select>
+									</td>
+									<td width="auto" align="left">
+										<input type="submit" class="search-button_ssfy" value="计算" onclick="count()">
+										<input type="reset" class="search-button_ssfy" value="重置" onclick="reset()">
+									</td>
+									
+								</tr>
+							</table>
+						
+						</td>
+					</tr>
+				</table>
+				</div>
+				<div style="display:none" id="table3">
+				<table width="100%" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td bgcolor="#FFFFFF" valign="top" height="65%" align="center">
+		 				<form  method="post">
+							<table width="100%" cellpadding="1" cellspacing="0" border="0">
+								<tr id="tr1" style="display:none;height:43px;padding-top:10px">
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">诉费计算公式为：</span></td>
+									<td width="auto" align="left" style="padding:0 35px 0 10px"><span id="page1" style="color:red;"></span>
+									</td>
+								</tr>
+								<tr id="tr2" style="display:none;height:43px;padding-top:10px">
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">诉讼费为：</span></td>
+									<td width="auto" align="left" style="padding-right:35px"><input type="text" id="page2" style="color:red;"/>
+									</td>
+								</tr>
+								<tr id="tr3" style="display:none;height:43px;padding-top:10px">
+									<td width="180px" align="right"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">大写金额为：</span></td>
+									<td width="auto" align="left" style="padding-right:35px"><input type="text" id="page3" style="color:red;"/>
+									</td>
+								</tr>
+							</table>
+						</form>
+						</td>
+					</tr>
+				</table>
+				</div>
+				</div>
+			    <div id="p1" class="p1">
+			       <h2><font color="red">*诉费计算说明：</font></h2>
+			       <h3>一、财产案件：根据诉讼请求的金额或者价额，按照下列比例分段累计交纳：</h3>
+			         <p>1.不超过1万元：每件交纳50元</p>
+　　					 <p>2.超过1万元至10万元：诉讼标的额×2.5%-200元</p>
+　　					 <p>3.超过10万元至20万元：诉讼标的额×2%+300元</p>
+　　					 <p>4.超过20万元至50万元：诉讼标的额×1.5%+1300元</p>
+　　					 <p>5.超过50万元至100万元：诉讼标的额×1%+3800元</p>
+　　					 <p>6.超过100万元至200万元：诉讼标的额×0.9%+4800元</p>
+　　					 <p>7.超过200万元至500万元：诉讼标的额×0.8%+6800元</p>
+　　					 <p>8.超过500万元至1000万元：诉讼标的额×0.7%+11800元</p>
+　　					 <p>9.超过1000万元至2000万元：诉讼标的额×0.6%+21800元</p>
+　　					 <p>10.超过2000万元：诉讼标的额×0.5%+41800元</p>
+                    <h3>二、执行费(申请人不预交)</h3>
+                    　　			 <p>1、没有执行金额或者价额：每件50元至500元</p>
+　　					 <p>2、不超过1万元：每件交纳50元</p>
+　　					 <p>3、超过1万元至50万元：执行金额×1.5%-100元</p>
+　　					 <p>4、超过50万元至500万元：执行金额×1%+2400元</p>
+　　					 <p>5、超过500万元至1000万元：执行金额×0.5%+27400元</p>
+　　					 <p>6、超过1000万元：执行金额×0.1%+67400元</p>
+                    <h3>三、保全费</h3>
+                     <p>1、财产数额不超过1000元或者不涉及财产数额：每件30元;</p>
+　　                                                       <p>2、超过1000元至10万元的部分 ：1%;</p>
+　　                                                       <p>3、超过10万元的部分0.5%，但最多不超过5000元。</p>
+                    <h3>四、离婚案件：每件50-300元，超过20万元的部分收0.5%。</h3>
+                    <h3>五、侵害人身权案件：每件100-500元，超过5万至10万的部分，收1%;超过10万的部分收0.5%。</h3>
+                    <h3>六、其他非财产案件：每件50-100元。</h3>
+                    <h3>七、劳动争议案件： 每件10元。</h3>
+                    <h3>八、知识产权纠纷案件：无争议金额的，每件500-1000元;有争议金额的按财产案件收费标准。</h3>
+                    <h3>九、破产案件：依据破产财产总额计算，按照财产案件受理费标准减半交纳，但最高不超过30万元。破产申请费清算后交纳。</h3>
+                    <h3>十、商标、专利、海事行政案件：每件100元;其他行政案件，每件50元。</h3>
+                    <h3>十一、管辖权异议：异议不成立的，每件50-100元。</h3>
+                    <h3>十二、申请支付令： 按财产案件受理费标准的1/3交纳。</h3>
+                    <h3>十三、申请公示催告：每件交纳100元。</h3>
+                    <h3>十四、申请撤销仲裁裁决或者认定仲裁协议效力：每件交纳400元。</h3>
+                    <h3>十五、以调解方式结案或者当事人申请撤诉的，适用简易程序审理的案件，被告提起反诉、有独立请求权的第三人提出与本案有关的诉讼请求，人民法院决定合并审理的：减半交纳案件受理费。</h3>
+                </div>
+			    </div>
+			    
+            </div>
+            </div>
+			</div>
+		</div>
+	  </div>
+        <!-- 国内新闻_end -->
+           <div class="clear"></div>
+    </div>
+    <!-- 左栏_end -->
+
+[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

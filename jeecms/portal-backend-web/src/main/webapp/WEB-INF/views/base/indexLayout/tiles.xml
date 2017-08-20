@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="standardLayout" template="/WEB-INF/views/base/layout.jsp">
+        <put-attribute name="left" value="/WEB-INF/views/base/left.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/base/right.jsp"/>
+    </definition>
+</tiles-definitions>

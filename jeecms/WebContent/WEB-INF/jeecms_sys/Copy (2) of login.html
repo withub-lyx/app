@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>JEECMS Administrator's Control Panel</title>
+
+<link href="${base}/r/cms/www/default/files/main.css" rel="stylesheet" type="text/css">
+<link href="${base}/r/cms/www/default/files/login.css" rel="stylesheet" type="text/css">
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+if(top!=this) {
+	top.location=this.location;
+}
+$(function() {
+	$("#username").focus();
+	$("#jvForm").validate();
+});
+</script>
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background:url(${base}/res/jeecms/img/login/bg.jpg) top repeat-x;}
+.input{width:150px;height:17px;border-top:1px solid #404040;border-left:1px solid #404040;border-right:1px solid #D4D0C8;border-bottom:1px solid #D4D0C8;}
+</style>
+</head>
+<body>
+<form id="jvForm" action="login.do" method="post">
+<#if returnUrl??><input type="hidden" name="returnUrl" value="${returnUrl}"/></#if>
+<#if processUrl??><input type="hidden" name="processUrl" value="${processUrl}"/></#if>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="100%">
+    	<div class="header">
+      		<div class="header-wrap">
+				<div class="logo"><img src="${base}/r/cms/www/default/files/logo.png" alt="海南法院司法公开网"/></div>
+					<a href="#" class="abr">返回首页</a>
+	  		</div>
+
+		</div>
+    </td>
+  </tr>
+  <tr>
+  <td>
+            <div>
+				<#if error??>
+					<ul>
+						<#if error=="org.apache.shiro.authc.IncorrectCredentialsException">
+						<li><@s.m "error.invalidPassword"/></li>
+						<#elseif error=="org.apache.shiro.authc.UnknownAccountException">
+						<li><@s.m "error.usernameNotExist"/></li>
+						<#elseif error=="com.jeecms.common.security.CaptchaErrorException">
+						<li><@s.m "error.invalidCaptcha"/></li>
+						<#elseif error=="com.jeecms.common.security.DisabledException">
+						<li><@s.m "error.userDisabled"/></li>
+ 						</#if>
+					</ul>
+				</#if>
+            </div>
+    <div class="content">
+<div class="content-wrap">
+<div class="topic"><img src="${base}/r/cms/www/default/files/sf.png"  alt=""/></div>
+<!--topic结束-->
+<div class="loginbox">
+<div class="optionbox">
+<div class="optionone1">后台管理系统</div> 
+<br style="clear:both;"/>
+</div>
+<div class="inputname
+">
+<b style="padding:8px;border-right:1px solid #ccc;margin-right:5px;"><img src="${base}/r/cms/www/default/files/per.png" alt="证件号码"/></b>
+<input name="username" class="login_text" id="username" type="text" value="" placeholder="请输入<@s.m "login.username"/>" autocomplete="off">
+
+                                    
+</div>
+
+<div class="inputpassword">
+<b style="padding:8px;border-right:1px solid #ccc;margin-right:5px;"><img src="${base}/r/cms/www/default/files/key.png" alt="密码"/></b>
+<input name="password" class="password_input" id="password" width="300" type="password" placeholder="请输入<@s.m "login.password"/>"  autocomplete="off" style="border:0">
+</div>
+<#if errorRemaining?? && errorRemaining<=0>
+                 <table>
+                    <tr>
+                    	<td colspan="2" align="center"><img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1"/></td>
+                    </tr>
+                    <tr>
+                      <td height="40" align="right"><strong><@s.m "login.captcha"/>：</strong></td>
+                      <td><input name="captcha" type="text" id="captcha" vld="{required:true}" class="input"/></td>
+                    </tr>
+                 </table>
+</#if>
+<div class="text">
+<a class="fgw" href="#">忘记密码?</a>
+<a class="reg" href="#">立即注册</a>
+<br style="clear:both;"/>
+</div>
+
+<a href="#" onclick="this.form.submit()"><div class="button">登录</div></a>
+<div class="tip">建议您用IE8及其以上版本浏览网站</div>
+</div>
+<!--loginbox结束-->
+<br style="clear:both;"/>
+</div>
+
+</div>
+  </td>
+  </tr>
+
+</table>
+</form>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

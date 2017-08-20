@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+    <definition name="innerLayout" template="/WEB-INF/views/base/innerLayout/innerLayout.jsp">
+    </definition>
+
+    <!-- 这里的name就是controller里面返回的路径-->
+    <definition name="*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}.jsp"/>
+    </definition>
+
+    <definition name="*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}.jsp" />
+    </definition>
+    <definition name="*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}.jsp" />
+    </definition>
+    <definition name="*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}.jsp" />
+    </definition>
+
+    <definition name="*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}.jsp" />
+    </definition>
+    <definition name="*/*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}/{6}.jsp" />
+    </definition>
+    <definition name="*/*/*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}/{6}/{7}.jsp" />
+    </definition>
+    <definition name="*/*/*/*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}.jsp" />
+    </definition>
+    <definition name="*/*/*/*/*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}.jsp" />
+    </definition>
+
+    <definition name="*/*/*/*/*/*/*/*/*/*.innerLayout" extends="innerLayout">
+        <put-attribute name="body" value="/WEB-INF/views/page/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}.jsp" />
+    </definition>
+</tiles-definitions>

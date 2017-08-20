@@ -1,0 +1,5 @@
+#redis auth
+#auth.redis.ip=120.25.146.27
+#auth.redis.port=6379
+#auth.redis.timeout=3000
+#auth.redis.common.key=liuquanL12liuquanL12

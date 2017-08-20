@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+
+    <!-- 定义CacheManager -->
+
+
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <!-- 指定配置文件的位置   如果这个不指定，默认使用classpath下的 ehcache.xml     如果这个都没有，那么使用jar包里的  ehcache-failsafe.xml  -->
+        <property name="configLocation" value="classpath:config/ehcache.xml"/>
+        <!-- 指定新建的CacheManager的名称 -->
+        <property name="cacheManagerName" value="cacheManagerName"/>
+
+        <!--是否分享该cache-->
+        <!--<property name="shared" value="false"/>-->
+        <!--是否接受共享的已存在的cache-->
+        <!--<property name="acceptExisting" value="false"/>-->
+    </bean>
+
+    <bean id="springEhCacheCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManager"/>
+    </bean>
+</beans>

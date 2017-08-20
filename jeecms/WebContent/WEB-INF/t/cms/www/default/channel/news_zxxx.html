@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/reset.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/files/search/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+	$(".shaixuan-tj span.crumb-select-item").live('hover',function(event){
+        if(event.type=='mouseenter'){ 
+        $(this).addClass("crumb-select-itemon");
+        }else{ 
+        $(this).removeClass("crumb-select-itemon");
+        } 
+    });
+    $(".shaixuan-tj span.crumb-select-item").live('click', function(event){
+        event.preventDefault();
+        $(this).remove();
+        var TTR = $(this).find("em").text();
+      /*  var bt =  $(this).find("b").text();
+        if(bt="信息类型")
+        {$("#xxlx").val(null)};
+        if(bt="审理法院")
+        {$("#slfy").val(null)};*/
+        $(".show-con a").each(function(){
+            var TT = $(this).text();
+                THI = $(this);
+                THIPP = $(this).parents("dl");
+            if(TTR==TT){
+                THI.removeClass("nzw12");
+                var dt = THIPP.find("dt");
+                var bt = dt.find("span").text();
+                if(bt="被执行人类型："){
+                	$("#bzxrlx").val(null);
+                }
+                if(bt="信息类型："){
+                	$("#xxlx").val(null);
+                }
+                if(bt="审理法院："){
+                	$("#slfy").val(null);
+                }
+                THIPP.css("display","block");
+            }
+        })
+    });
+    $(".show-con a").click(function(event){
+        event.preventDefault();
+             THIP = $(this).parents("dl");
+        if($(this).hasClass("nzw12")){
+        }else{
+            $(this).addClass("nzw12");
+            var zhiclass = $(this).parents("dd").siblings("dt").find("a").text();
+            var zhicon = $(this).text();
+            var bt = $(this).parents("dd").siblings("dt").find("span").text();
+            tianjaneir="<span class='crumb-select-item'><a href='/'><b>"+bt+"</b>&nbsp&nbsp<em>"+zhicon+"</em><i class='icon-remove'></i></a></span>"
+            $(".shaixuan-tj").children().last().after(tianjaneir);
+            THIP.css("display","none");
+        }
+    });
+    $(".show-more").click(function(event){
+        event.preventDefault();
+        var ticon = $(this).find("i");
+            tspan = $(this).find("span");
+            if($(this).hasClass("zk")){
+                $(this).siblings(".show-con").css("height","30px");
+                ticon.removeClass("icon-angle-up");
+                ticon.addClass("icon-angle-down");
+                tspan.html("更多");
+                $(this).removeClass("zk")
+            }else{
+                $(this).siblings(".show-con").css("height","auto");
+                ticon.removeClass("icon-angle-down");
+                ticon.addClass("icon-angle-up");
+                tspan.html("收起");
+                $(this).addClass("zk")
+            }
+    });
+    $("#sxbtn").click(function(event){
+        event.preventDefault();
+        var xicon = $(this).find("span i");
+            xspan = $(this).find("span em");
+        if($(this).hasClass("zkon")){
+            xspan.text("收起筛选");
+            xicon.removeClass("icon-angle-down");
+            xicon.addClass("icon-angle-up");
+            $(".sxcon").slideDown();
+            $(this).removeClass("zkon")
+        }else{
+            xspan.text("查看筛选");
+            xicon.removeClass("icon-angle-up");
+            xicon.addClass("icon-angle-down");
+            $(".sxcon").slideUp();
+            $(this).addClass("zkon")
+        }
+    })
+});
+function bzxrlx(mc){
+	$("#bzxrlx").val(mc.innerHTML);
+}
+function xxlx(mc){
+	$("#xxlx").val(mc.innerHTML);
+	
+}
+function slfy(mc){
+	$("#slfy").val(mc.innerHTML);
+	
+}
+</script>
+</head>
+<body>
+<div class="wapper">
+    [#include "../include/header.html"/]
+    [#include "../include/navi_zxxx.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+    	<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+        <div class="clear-10"></div>
+        <div style="width:98%;height:35px">
+        <div style="float:left">
+        <div class="titles">[#list channel.nodeList as n][#if !n_has_next] ${n.name} [/#if][/#list]</div>
+        </div>
+        <div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+        </div>
+        <!-- 国内新闻_begin -->
+        <div class="zxxx">
+            <div class="texzxxx">
+                <div style="height:auto;width:98%;border: 1px solid rgb(204, 204, 204);margin:20px 0 20px 0">
+			    <div class="splcTitle">
+			    <div style="float:left"><h3>执行信息</h3></div>
+			        <div style="float:right;padding-right:15px">
+			          <a href="">执行信息的公开范围</a>&nbsp&nbsp&nbsp&nbsp<a href="">执行信息公开信息的查询方法</a>
+			        </div>
+			    </div>
+			    
+			    <div id="search_2" style="width:100%;overflow:hidden;padding-buttom:20px">
+			      <div class="clear"></div>
+			      <div class="clearfix">
+			            <div style="overflow:hidden;padding-top:20px">
+			                 <div style="float:left;margin-top:5px;padding-left:30px"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">被执行人：</span></div>
+			                 <div class="search_1"><input type="text" class="search-input" placeholder="请输入姓名或名称" value="" style="color: rgb(153, 153, 153);"></div>
+			                 <div style="float:left;margin-top:5px;"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">案号  ：</span></div>
+					         <div class="search_1"><input type="text" class="search-input" value="" placeholder="请输入案号" style="color: rgb(153, 153, 153);"></div>
+					         <input type="hidden" id="bzxrlx" name="bzxrlx" />
+					         <input type="hidden" id="xxlx" name="xxlx" />
+					         <input type="hidden" id="slfy" name="slfy" />
+					         <input type="submit" class="search-button_zx_search" value="搜索" >
+					         <p id="sxbtn" class="shaixuan-btn clearfix"><span><em>收起筛选</em><i class="icon-angle-up"></i></span></p>
+					    </div>
+        				<div class="shaixuan-tj floatLeft clearfix">
+        				     <span><strong>筛选条件</strong></span>
+            				 <i class="icon-angle-right"></i>
+           				</div>
+        		 </div>
+    			 <div id="page-search-store" class="mb10 border sxcon">
+       			   <div class="search-by by-category relative">
+       			      <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>被执行人类型：</span></dt>
+                		<dd class="show-con">
+                    		<a href="" onclick="bzxrlx(this)"><span class="selected">全部</span></a>
+			        	    <a href="" onclick="bzxrlx(this)">自然人</a>
+			       		    <a href="" onclick="bzxrlx(this)">法人</a>
+			        	</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+       			      <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>信息类型：</span></dt>
+                		<dd class="show-con">
+                		    <a href="" onclick="xxlx(this)"><span class="selected">全部</span></a>
+                    		<a href="" onclick="xxlx(this)">终本案件</a>
+			        	    <a href="" onclick="xxlx(this)">失信被执行人</a>
+			       		    <a href="" onclick="xxlx(this)">限制出境被执行人</a>
+			        	    <a href="" onclick="xxlx(this)">限制高消费被执行人</a>
+			        	    <a href="" onclick="xxlx(this)">限制招投标被执行人</a>
+                		</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+            		  <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>审理法院：</span></dt>
+                		<dd class="show-con">
+                		   <a href="" onclick="slfy(this)"><span class="selected">全部</span></a>
+                    	   <a href="" onclick="slfy(this)">海南省高级人民法院</a>
+			               <a href="" onclick="slfy(this)">海口海事法院</a>
+			               <a href="" onclick="slfy(this)">海口市中级人民法院</a>
+			               <a href="${base}/fyzy/623.jhtml" onclick="slfy(this)" >美兰区人民法院</a>
+			    		   <a href="${base}/fyzy/624.jhtml" onclick="slfy(this)" >秀英区人民法院</a>
+			               <a href="${base}/fyzy/625.jhtml" onclick="slfy(this)" >琼山区人民法院</a>
+			               <a href="${base}/fyzy/626.jhtml" onclick="slfy(this)" >龙华区人民法院</a>
+			               <a href="" onclick="slfy(this)">海南省第一中级人民法院</a>
+			               <a href="${base}/fyzy/610.jhtml" onclick="slfy(this)" >五指山市人民法院</a>
+                           <a href="${base}/fyzy/611.jhtml" onclick="slfy(this)" >文昌市人民法院</a>
+                           <a href="${base}/fyzy/612.jhtml" onclick="slfy(this)" >万宁市人民法院</a>
+                           <a href="${base}/fyzy/613.jhtml" onclick="slfy(this)" >陵水县人民法院</a>
+                           <a href="${base}/fyzy/614.jhtml" onclick="slfy(this)" >安定县人民法院</a>
+                           <a href="${base}/fyzy/615.jhtml" onclick="slfy(this)" >琼海市人民法院</a>
+                           <a href="${base}/fyzy/616.jhtml" onclick="slfy(this)" >屯昌县人民法院</a>
+                           <a href="${base}/fyzy/630.jhtml" onclick="slfy(this)" >澄迈县人民法院</a>
+                           <a href="${base}/fyzy/631.jhtml" onclick="slfy(this)" >保亭黎族苗族自治县人民法院</a>
+                           <a href="${base}/fyzy/632.jhtml" onclick="slfy(this)" >琼中县人民法院</a>
+			               <a href="" onclick="slfy(this)">海南省第二中级人民法院</a>
+			               <a href="${base}/fyzy/617.jhtml" onclick="slfy(this)" >东方市人民法院</a>
+                           <a href="${base}/fyzy/618.jhtml" onclick="slfy(this)" >儋州市人民法院</a>
+                           <a href="${base}/fyzy/619.jhtml" onclick="slfy(this)" >昌江县人民法院</a>
+                           <a href="${base}/fyzy/620.jhtml" onclick="slfy(this)" >乐东县人民法院</a>
+                           <a href="${base}/fyzy/621.jhtml" onclick="slfy(this)" >临高县人民法院</a>
+                           <a href="${base}/fyzy/622.jhtml" onclick="slfy(this)" >白沙黎族自治县人民法院</a>
+                           <a href="${base}/fyzy/633.jhtml" onclick="slfy(this)" >洋浦经济开发区人民法院</a>
+                           <a href="" onclick="slfy(this)">三亚市中级人民法院</a>
+			               <a href="${base}/fyzy/627.jhtml" onclick="slfy(this)" >三亚城郊人民法院</a>
+                           <a href="" onclick="slfy(this)">三沙市中级人民法院</a>
+                		</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+            		  
+        		   </div>
+    			 </div>
+			    </div>
+			        
+			    </div>
+			    <div style="height:auto;width:98%;border:none;font-size:14px;padding:10px 0 0 10px">
+			     <span>查询到<font color="red">127782</font>条符合条件的执行案件</span>
+			    </div>
+                <div class="table">
+                   <table class="tab" cellpadding="0" cellspacing="0">
+	                   <thead>                             
+	                         <tr class="tab_tr">
+	                                    <th class="tab_th" style="width:50px"><span>序号</span></th>
+	                                    <th class="tab_th" style="width:80px"><span>姓名/名称</span></th>
+	                                    <th class="tab_th" style="width:80px"><span>证件类型</span></th>
+	                                    <th class="tab_th" style="width:190px"><span>证件号码/组织机构代码</span></th>
+	                                    <th class="tab_th" style="width:190px"><span>信息类型</span></th>
+	                                    <th class="tab_th" style="width:180px"><span>执行案号</span></th>
+	                                    <th class="tab_th" style="width:170px"><span>执行依据文号</span></th>
+	                                    <th class="tab_th" style="width:180px"><span>执行法院</span></th>
+	                                    <th class="tab_th" style="width:90px"><span>立案时间</span></th>
+	                         </tr>
+	                   </thead>
+                       <tbody class="tab_body">
+                           <tr class="treven">
+                                        <td class="tab_td" style="width:50px"><span style="color:#535353;">1</span></td>
+                                        <td class="tab_td" style="width:80px"><a href=""><span style="display:block;color:#535353;">魏宝田</span></a></td>
+                                        <td class="tab_td" style="width:80px"><span style="color:#535353;">居民身份证</span></td>
+                                        <td class="tab_td" style="width:190px"><span style="color:#535353;">1101021966****3015</span></td>
+                                        <td class="tab_td" style="width:190px"><span style="color:#535353;">失信被执行人</span></td>
+                                        <td class="tab_td" style="width:180px"><span style="color:#535353;">(2016)京0102执10090号</span></td>
+                                        <td class="tab_td" style="width:170px"><span style="color:#535353;">(2016)京中信执字0121...</span></td>
+										<td class="tab_td" style="width:180px"><span style="color:#535353;">北京市西城区人民法院</span></td>
+										<td class="tab_td" style="width:90px"><span style="color:#535353;">2016-11-1</span></td>
+                           </tr> 
+						   <tr class="treven">
+                                        <td class="tab_td" style="width:50px"><span style="color:#535353;">2</span></td>
+                                        <td class="tab_td" style="width:80px"><a href=""><span style="display:block;color:#535353;">魏宝田</span></a></td>
+                                        <td class="tab_td" style="width:80px"><span style="color:#535353;">居民身份证</span></td>
+                                        <td class="tab_td" style="width:190px"><span style="color:#535353;">1101021966****3015</span></td>
+                                        <td class="tab_td" style="width:190px"><span style="color:#535353;">失信被执行人</span></td>
+                                        <td class="tab_td" style="width:180px"><span style="color:#535353;">(2016)京0102执10090号</span></td>
+                                        <td class="tab_td" style="width:170px"><span style="color:#535353;">(2016)京中信执字0121...</span></td>
+										<td class="tab_td" style="width:180px"><span style="color:#535353;">北京市西城区人民法院</span></td>
+										<td class="tab_td" style="width:90px"><span style="color:#535353;">2016-11-1</span></td>
+                           </tr>
+						 	
+						</tbody>
+ 					</table>
+ 				</div>
+            </div>
+             
+        </div>
+        <!-- 国内新闻_end -->
+        <div class="clear"></div>
+    </div>
+    <!-- 左栏_end -->
+</div>
+
+[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

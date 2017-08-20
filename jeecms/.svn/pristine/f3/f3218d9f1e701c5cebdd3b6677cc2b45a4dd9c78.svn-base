@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/rightNavi.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${resSys}/echarts/build/dist/echarts.js"></script>
+<script src="${resSys}/echarts/jquery.mini.js"></script>
+
+   <!--<script src="js/echarts.js"></script>
+    <script src="/echarts/build/source/chart/map.js"></script>
+   <script src="${resSys}/echarts/util/mapData/params.js"></script>
+     <link href="${resSys}/echarts/asset/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/bootstrap.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/carousel.css" rel="stylesheet">
+    <script src="${resSys}/echarts/build/source/echarts-all.js"></script>
+    <script src="${resSys}/echarts/build/source/chart/map.js"></script>
+    <script src="${resSys}/echarts/asset/js/codemirror.js"></script>
+    <script src="${resSys}/echarts/asset/js/javascript.js"></script>
+    <link href="${resSys}/echarts/asset/css/codemirror.css" rel="stylesheet">
+    <link href="${resSys}/echarts/asset/css/monokai.css" rel="stylesheet">-->
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+});
+</script>
+</head>
+<body>
+<div class="wapper">
+[#include "../include/header.html"/]
+[#include "../include/navi_splc.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+       <!-- 国内新闻_begin -->
+           <div class="contentssfw">
+		   <div class="innerssfw">
+			<div class="subnav">
+				<ul>
+					[@cms_channel_list count='12' orderBy='4' titLen='20' parentId='74' channelOption='1' dateFormat='yyyy-MM-dd']
+                       [#list tag_list as a]
+                        [#if a.title=="司法文件"]
+                        <li class="active">
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                        [#else]
+                        <li>
+                             <a href="${a.url}" title="${a.title}" target="_self">[@text_cut s=a.title len=titLen /]</a>
+                        </li>
+                       [/#if]
+                       [/#list]
+                    [/@cms_channel_list]
+				</ul>
+			</div>
+			<div class="conts">
+				<div style="width:100%;">
+					<div class="locat">
+						<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+					</div>
+					<div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+					<br style="clear:both;">
+				</div>
+			<div class="titles">[#list channel.nodeList as n][#if !n_has_next] ${n.name} [/#if][/#list]</div>
+			<div class="tex">
+			<div style="float:left;width:100%">
+                <ul style="list-style-type:square;color:#1388ff;height:auto">
+          			<!--  [@cms_content_list count='10' titLen='15' orderBy='2' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+		  			[#list tag_list as a]
+		 					 <li class="texli"><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span><span style="display:block;width:20%;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+		  			[/#list]
+		  			[/@cms_content_list]-->
+                     [@cms_content_page count='10' orderBy='2' channelId='84' channelOption='1' dateFormat='yyyy-MM-dd']
+                     [#list tag_pagination.list as a]
+                               <li class="texli"><a href="${a.url}"><span style="display:block;width:470px;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if][#if a.author??]<span style="color:#bfbfbf;font-size:12px">&nbsp&nbsp(${a.author})</span>[/#if]</span><span style="display:block;width:160px;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+                     [/#list]
+                     <div style="clear:both;"></div>
+                     <div class="pagesite">
+                       [@cms_pagination sysPage='1'/]
+                     </div>
+                     [/@cms_content_page]
+				</ul>
+			</div>
+		<!--  	<div id="rightNav_sszn">
+  						<ul class="wrap">
+    							 <li class="adv_active"><a href="#fygk" class="adv_door adv_active"><ins></ins>立案、申诉、查询、执行窗口服务制度<span></span></a></li>
+    							 <li><a href="#gxfw" class="adv_source"><ins></ins>民事诉讼风险提示<span></span></a></li>
+   								 <li><a href="#bmjzn" class="adv_price"><ins></ins>民事诉讼程序指导<span></span></a></li>
+   								 <li><a href="#swhzcry" class="adv_transfer"><ins></ins>行政诉讼程序指导<span></span></a></li>
+    							 <li><a href="#fydz" class="adv_payment"><ins></ins>诉讼费交费指南<span></span></a></li>
+    							 <li><a href="#tsqd" class="adv_promise"><ins></ins>申请再审、申诉程序指导<span></span></a></li>
+    							 <li><a href="#tsqd" class="adv_promise"><ins></ins>执行须知<span></span></a></li>
+    							 <li><a href="#tsqd" class="adv_promise"><ins></ins>诉讼当事人知情权告知<span></span></a></li>
+    							 <li><a href="#tsqd" class="adv_promise"><ins></ins>民商事案件级别管辖规定<span></span></a></li>
+    							 <li><a href="#tsqd" class="adv_promise"><ins></ins>国家赔偿程序指导<span></span></a></li>
+  						</ul>
+			</div>-->
+</div>
+
+			
+            </div>
+			</div>
+		</div>
+	  </div>
+        <!-- 国内新闻_end -->
+           <div class="clear"></div>
+         </div>
+    <!-- 左栏_end -->
+
+[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

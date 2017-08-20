@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/reset.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/search/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/files/search/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+	$(".shaixuan-tj span.crumb-select-item").live('hover',function(event){
+        if(event.type=='mouseenter'){ 
+        $(this).addClass("crumb-select-itemon");
+        }else{ 
+        $(this).removeClass("crumb-select-itemon");
+        } 
+    });
+    $(".shaixuan-tj span.crumb-select-item").live('click', function(event){
+        event.preventDefault();
+        $(this).remove();
+        var TTR = $(this).find("em").text();
+      /*  var bt =  $(this).find("b").text();
+        if(bt="信息类型")
+        {$("#xxlx").val(null)};
+        if(bt="审理法院")
+        {$("#slfy").val(null)};*/
+        $(".show-con a").each(function(){
+            var TT = $(this).text();
+                THI = $(this);
+                THIPP = $(this).parents("dl");
+            if(TTR==TT){
+                THI.removeClass("nzw12");
+                var dt = THIPP.find("dt");
+                var bt = dt.find("span").text();
+                if(bt="被执行人类型："){
+                	$("#bzxrlx").val(null);
+                }
+                if(bt="信息类型："){
+                	$("#xxlx").val(null);
+                }
+                if(bt="审理法院："){
+                	$("#slfy").val(null);
+                }
+                THIPP.css("display","block");
+            }
+        })
+    });
+    $(".show-con a").click(function(event){
+        event.preventDefault();
+             THIP = $(this).parents("dl");
+        if($(this).hasClass("nzw12")){
+        }else{
+            $(this).addClass("nzw12");
+            var zhiclass = $(this).parents("dd").siblings("dt").find("a").text();
+            var zhicon = $(this).text();
+            var bt = $(this).parents("dd").siblings("dt").find("span").text();
+            tianjaneir="<span class='crumb-select-item'><a href='/'><b>"+bt+"</b>&nbsp&nbsp<em>"+zhicon+"</em><i class='icon-remove'></i></a></span>"
+            $(".shaixuan-tj").children().last().after(tianjaneir);
+            THIP.css("display","none");
+        }
+    });
+    $(".show-more").click(function(event){
+        event.preventDefault();
+        var ticon = $(this).find("i");
+            tspan = $(this).find("span");
+            if($(this).hasClass("zk")){
+                $(this).siblings(".show-con").css("height","30px");
+                ticon.removeClass("icon-angle-up");
+                ticon.addClass("icon-angle-down");
+                tspan.html("更多");
+                $(this).removeClass("zk")
+            }else{
+                $(this).siblings(".show-con").css("height","auto");
+                ticon.removeClass("icon-angle-down");
+                ticon.addClass("icon-angle-up");
+                tspan.html("收起");
+                $(this).addClass("zk")
+            }
+    });
+    $("#sxbtn").click(function(event){
+        event.preventDefault();
+        var xicon = $(this).find("span i");
+            xspan = $(this).find("span em");
+        if($(this).hasClass("zkon")){
+            xspan.text("收起筛选");
+            xicon.removeClass("icon-angle-down");
+            xicon.addClass("icon-angle-up");
+            $(".sxcon").slideDown();
+            $(this).removeClass("zkon")
+        }else{
+            xspan.text("查看筛选");
+            xicon.removeClass("icon-angle-up");
+            xicon.addClass("icon-angle-down");
+            $(".sxcon").slideUp();
+            $(this).addClass("zkon")
+        }
+    })
+});
+function bzxrlx(mc){
+	$("#bzxrlx").val(mc.innerHTML);
+}
+function xxlx(mc){
+	$("#xxlx").val(mc.innerHTML);
+	
+}
+function slfy(mc){
+	$("#slfy").val(mc.innerHTML);
+	
+}
+</script>
+</head>
+<body>
+<div class="wapper">
+    [#include "../include/header.html"/]
+    [#include "../include/navi_wsgk.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+    	<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+        <div class="clear-10"></div>
+        <div style="width:98%;height:35px">
+        <div style="float:left">
+        <div class="titles">[#list channel.nodeList as n][#if !n_has_next] ${n.name} [/#if][/#list]</div>
+        </div>
+        <!--<div style="float:right">
+        <form action="" target="_self" style="margin:10px 10px 15px 0;float:right;width:600px">
+            <span>文书类型：</span>
+              <select name="category" style="width:30%;">
+              <option value="" selected="selected">任意</option>
+              <option value="">刑事诉讼文书</option>
+              <option value="">民事诉讼文书</option>
+              <option value="">民事审判监督程序裁判文书</option>
+              <option value="">海事诉讼文书</option>
+              <option value="">行政诉讼文书</option>
+              <option value="">国家赔偿案件文书</option>
+              <option value="">执行文书</option>
+              </select>
+            <span>案      号：</span>
+          <input name="q" value="${q!'请输入案号'}" type="text" id="txtKey" onfocus="if(this.value=='请输入案号')this.value=''" onblur="if(this.value=='')this.value='请输入案号'" maxlength="50" autocomplete="off" / style="width:30%;">
+        
+          <input type="submit" class="" value="搜索"/ >
+    
+           </form>
+           </div>-->
+           <div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+        </div>
+        <!-- 国内新闻_begin -->
+        <div class="wsgk">
+            <div class="searchwsgk">
+			    <div class="splcTitle">
+			    <div style="float:left"><h3>执行信息</h3></div>
+			        <div style="float:right;padding-right:15px">
+			          <a href="">执行信息的公开范围</a>&nbsp&nbsp&nbsp&nbsp<a href="">执行信息公开信息的查询方法</a>
+			        </div>
+			    </div>
+			    
+			    <div id="search_2" style="width:100%;overflow:hidden;padding-buttom:20px">
+			      <div class="clear"></div>
+			      <div class="clearfix">
+			            <div style="overflow:hidden;padding-top:20px">
+			                 <div style="float:left;margin-top:5px;padding-left:30px"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">诉讼参与人  ：</span></div>
+			                 <div class="search_1"><input type="text" class="search-input" placeholder="请输入姓名或名称" value="" style="color: rgb(153, 153, 153);"></div>
+			                 <div style="float:left;margin-top:5px;"><span style="font: 14px 'Microsoft YaHei';font-weight: bold;">案情关键字  ：</span></div>
+					         <div class="search_1"><input type="text" class="search-input" value="" placeholder="请输入关键字" style="color: rgb(153, 153, 153);"></div>
+					         <input type="hidden" id="bzxrlx" name="bzxrlx" />
+					         <input type="hidden" id="xxlx" name="xxlx" />
+					         <input type="hidden" id="slfy" name="slfy" />
+					         <input type="submit" class="search-button_zx_search" value="搜索" >
+					         <p id="sxbtn" class="shaixuan-btn clearfix"><span><em>收起筛选</em><i class="icon-angle-up"></i></span></p>
+					    </div>
+        				<div class="shaixuan-tj floatLeft clearfix">
+        				     <span><strong>筛选条件</strong></span>
+            				 <i class="icon-angle-right"></i>
+           				</div>
+        				
+    			 </div>
+    			 <div id="page-search-store" class="mb10 border sxcon">
+       			   <div class="search-by by-category relative">
+       			      <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>诉讼参与人类别：</span></dt>
+                		<dd class="show-con">
+                    		<a href="" onclick="bzxrlx(this)"><span class="selected">全部</span></a>
+			        	    <a href="" onclick="bzxrlx(this)">原告姓名或名称</a>
+			       		    <a href="" onclick="bzxrlx(this)">被告姓名或名称</a>
+			       		    <a href="" onclick="bzxrlx(this)">代理人、辩护人姓名</a>
+			        	    <a href="" onclick="bzxrlx(this)">第三人、申请人姓名或名称</a>
+			       		    <a href="" onclick="bzxrlx(this)">公诉人名称</a>
+			       		    <a href="" onclick="bzxrlx(this)">上诉/被上诉人姓名或名称</a>
+			        	    <a href="" onclick="bzxrlx(this)">申诉/被申诉人姓名或名称</a>
+			       		    <a href="" onclick="bzxrlx(this)">法定代表人、诉讼代表人、主要负责人姓名</a>
+			       		    <a href="" onclick="bzxrlx(this)">其它诉讼参与人姓名或名称</a>
+			        	</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+            		  <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>部门：</span></dt>
+                		<dd class="show-con">
+                    		<a href="" onclick="bzxrlx(this)"><span class="selected">全部</span></a>
+			        	    <a href="" onclick="bzxrlx(this)">刑事审判庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">民事审判庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">经济审判庭</a>
+			        	    <a href="" onclick="bzxrlx(this)">行政审判庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">知识产权庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">审判监督庭</a>
+			        	    <a href="" onclick="bzxrlx(this)">执行庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">立案庭</a>
+			        	</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+       			      <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>案件审级：</span></dt>
+                		<dd class="show-con">
+                		    <a href="" onclick="bzxrlx(this)"><span class="selected">全部</span></a>
+                    		<a href="" onclick="bzxrlx(this)">一审</a>
+			        	    <a href="" onclick="bzxrlx(this)">二审</a>
+			       		</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+       			      <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>文书性质：</span></dt>
+                		<dd class="show-con">
+                		    <a href="" onclick="xxlx(this)"><span class="selected">全部</span></a>
+                    		<a href="" onclick="xxlx(this)">裁定书</a>
+			        	    <a href="" onclick="xxlx(this)">判决书</a>
+			       		    <a href="" onclick="xxlx(this)">调解书</a>
+			        	</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+            		  <dl class="relative clearfix">
+                		<dt class="floatLeft"><span>案由：</span></dt>
+                		<dd class="show-con">
+                    		<a href="" onclick="bzxrlx(this)"><span class="selected">全部</span></a>
+			        	    <a href="" onclick="bzxrlx(this)">刑事案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">危害国家安全罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">危害公共安全罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">破坏社会主义市场经济秩序罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">生产、销售伪劣商品罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">走私罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">妨害对公司、企业的管理秩序罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">破坏金融管理秩序罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">金融诈骗罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">危害税收征管罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">侵犯知识产权罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">扰乱市场秩序罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">侵犯公民人身权利、民主权利罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">侵犯财产罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">妨害社会管理秩序罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">扰乱公共秩序</a>
+			        	    <a href="" onclick="bzxrlx(this)">妨害司法罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">妨害国边境管理罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">妨害文物管理罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">危害公共卫生罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">破坏环境资源保护罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">走私、贩卖、运输、制造毒品罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">组织、强迫、引诱、容留、 介绍卖淫罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">制造、贩卖、传播淫秽物品罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">危害国防利益罪</a>
+			        	    <a href="" onclick="bzxrlx(this)">贪污贿赂罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">渎职罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">军人违反职责罪</a>
+			       		    <a href="" onclick="bzxrlx(this)">民事案由</a>
+			        	    <a href="" onclick="bzxrlx(this)">婚姻家庭</a>
+			       		    <a href="" onclick="bzxrlx(this)">继承</a>
+			       		    <a href="" onclick="bzxrlx(this)">房屋</a>
+			        	    <a href="" onclick="bzxrlx(this)">其他不动产</a>
+			       		    <a href="" onclick="bzxrlx(this)">相邻关系</a>
+			       		    <a href="" onclick="bzxrlx(this)">赔偿</a>
+			        	    <a href="" onclick="bzxrlx(this)">债</a>
+			       		    <a href="" onclick="bzxrlx(this)">知识产权</a>
+			       		    <a href="" onclick="bzxrlx(this)">人身权</a>
+			       		    <a href="" onclick="bzxrlx(this)">特别程序</a>
+			        	    <a href="" onclick="bzxrlx(this)">其他民事纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">经济纠纷案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">经济合同纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">经济损害赔偿纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">经济权属纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">企业破产</a>
+			        	    <a href="" onclick="bzxrlx(this)">交通运输经济纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">铁路运输纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">航空运输纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">公路运输纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">水路运输纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">其他经济纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">海事海商纠纷案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">海事纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">海商纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">其他海事海商纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">申请执行（仲裁）</a>
+			       		    <a href="" onclick="bzxrlx(this)">知识产权案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">著作权纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">专利纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">商标</a>
+			       		    <a href="" onclick="bzxrlx(this)">不正当竞争</a>
+			       		    <a href="" onclick="bzxrlx(this)">技术合同纠纷</a>
+			        	    <a href="" onclick="bzxrlx(this)">行政案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">公安</a>
+			       		    <a href="" onclick="bzxrlx(this)">卫生</a>
+			        	    <a href="" onclick="bzxrlx(this)">文化</a>
+			       		    <a href="" onclick="bzxrlx(this)">资源</a>
+			       		    <a href="" onclick="bzxrlx(this)">农业</a>
+			        	    <a href="" onclick="bzxrlx(this)">计划生育</a>
+			       		    <a href="" onclick="bzxrlx(this)">监察</a>
+			       		    <a href="" onclick="bzxrlx(this)">城建</a>
+			       		    <a href="" onclick="bzxrlx(this)">环境保护</a>
+			        	    <a href="" onclick="bzxrlx(this)">交通运输</a>
+			       		    <a href="" onclick="bzxrlx(this)">邮电</a>
+			       		    <a href="" onclick="bzxrlx(this)">无线电管理</a>
+			        	    <a href="" onclick="bzxrlx(this)">电业</a>
+			       		    <a href="" onclick="bzxrlx(this)">统计</a>
+			       		    <a href="" onclick="bzxrlx(this)">专利</a>
+			        	    <a href="" onclick="bzxrlx(this)">技术监督</a>
+			       		    <a href="" onclick="bzxrlx(this)">民政</a>
+			       		    <a href="" onclick="bzxrlx(this)">旅游</a>
+			       		    <a href="" onclick="bzxrlx(this)">海关</a>
+			        	    <a href="" onclick="bzxrlx(this)">金融</a>
+			       		    <a href="" onclick="bzxrlx(this)">物价</a>
+			       		    <a href="" onclick="bzxrlx(this)">财政</a>
+			        	    <a href="" onclick="bzxrlx(this)">税务管理</a>
+			       		    <a href="" onclick="bzxrlx(this)">工商</a>
+			       		    <a href="" onclick="bzxrlx(this)">烟草专卖</a>
+			        	    <a href="" onclick="bzxrlx(this)">劳动</a>
+			       		    <a href="" onclick="bzxrlx(this)">司法</a>
+			       		    <a href="" onclick="bzxrlx(this)">档案</a>
+			        	    <a href="" onclick="bzxrlx(this)">国有资产管理</a>
+			       		    <a href="" onclick="bzxrlx(this)">审计</a>
+			       		    <a href="" onclick="bzxrlx(this)">侵权</a>
+			        	    <a href="" onclick="bzxrlx(this)">不作为</a>
+			       		    <a href="" onclick="bzxrlx(this)">赔偿案由</a>
+			       		    <a href="" onclick="bzxrlx(this)">执行案由</a>
+			        	    <a href="" onclick="bzxrlx(this)">民事</a>
+			       		    <a href="" onclick="bzxrlx(this)">经济合同纠纷</a>
+			       		    <a href="" onclick="bzxrlx(this)">行政</a>
+			       		    <a href="" onclick="bzxrlx(this)">刑事案件有关财产部分</a>
+			       		    <a href="" onclick="bzxrlx(this)">行政非诉</a>
+			        	    <a href="" onclick="bzxrlx(this)">仲裁</a>
+			       		    <a href="" onclick="bzxrlx(this)">公证债权文书</a>
+			       		    <a href="" onclick="bzxrlx(this)">司法协助</a>
+			        	    <a href="" onclick="bzxrlx(this)">其他（公证债权文书）</a>
+			       		    <a href="" onclick="bzxrlx(this)">立案庭案由</a>
+			       		</dd>
+                		<dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            		  </dl>
+            		  
+        		   </div>
+    			 </div>
+			    </div>
+			        
+			    </div>
+            <div class="texwsgk">
+                <div class="table">
+                   <table class="tab" cellpadding="0" cellspacing="0">
+	                   <thead>                             
+	                         <tr class="tab_tr">
+	                                    <th class="tab_th"><span style="display:block;width:60%;float:left;">文书名称</span></th>
+	                                    <th class="tab_th"><div>发布法院名称</div></th>
+	                                    <th class="tab_th"><div>发布时间 </div></th>
+	                         </tr>
+	                   </thead>
+                       <tbody class="tab_body">
+                           [@cms_content_page count='10' orderBy='2' channelId='101' channelOption='1' dateFormat='yyyy-MM-dd']
+                     		 [#list tag_pagination.list as a]
+                     		   <tr class="treven">
+										<td class="tab_td"><div><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span></a></div></td>
+										<td class="tab_td">[#if a.author??]<span style="color:#535353;">&nbsp&nbsp${a.author}</span>[/#if]</td>
+										<td class="tab_td"><span style="display:block;width:100%;color:#535353;">${a.date?string(dateFormat)}</span></td>
+
+							</tr> 
+							[/#list]
+                     			
+                     			<div class="pagesite_wenshu">
+                      				 [@cms_pagination sysPage='1'/]
+                     			</div>
+                    	    [/@cms_content_page]
+						 	
+						</tbody>
+ 					</table>
+ 				</div>
+            </div>
+             
+        </div>
+        <!-- 国内新闻_end -->
+        <div class="clear"></div>
+    </div>
+    <!-- 左栏_end -->
+</div>
+
+[#include "../include/footer.html"/]
+</div>
+</body>
+</html>

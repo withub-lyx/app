@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>海南法院司法公开网</title>
+<script src="/${res}/js/indexshow.js" type="text/javascript"></script>
+<link href="/${res}/files/main.css" rel="stylesheet" type="text/css">
+<link href="/${res}/files/index.css" rel="stylesheet" type="text/css">
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="wapper">
+[#include "../include/header.html"/]
+[#include "../include/navi.html"/]
+
+<div class="container">
+<div class="inner">
+<div class="f1">
+<div class="news">
+<!-- 焦点图代码宽310_begin -->
+  <div class="comiis_wrapad" id="slideContainer">
+      <div id="frameHlicAe" class="frame cl">
+          <div class="temp"></div>
+          <div class="block">
+              <div class="cl">
+                  <ul class="slideshow" id="slidesImgs">
+                  [@cms_content_list count='5' orderBy='4' typeId='3' titLen='18' channelOption='1' channelId='1']
+                  [#list tag_list as a]
+                  <li>
+                      <a href="${a.url}" target="_blank">
+                      <img src="${a.typeImg!site.defImg}" alt="${a.title}" width="620px" height="295px" />
+                      </a>
+                      <span class="title">
+                      [@text_cut s=a.title len=titLen /]
+                      </span>
+                  </li>
+                  [/#list]
+                  [/@cms_content_list]
+                  </ul>
+              </div>
+              <div class="slidebar" id="slideBar">
+                  <ul>
+                      <li class="on">1</li>
+                      <li>2</li>
+                      <li>3</li>
+                      <li>4</li>
+                      <li>5</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script type="text/javascript">
+      SlideShow(3000);
+  </script>
+  <!-- 焦点图代码宽310_end -->
+</div>
+<div class="gongk">
+<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+<input type="submit" class="search-button" value="搜索" >
+<br style="clear:both;">
+<ul>
+<li class="li1" style="line-height: 86px;">审判流程公开</li>
+<li class="li2" style="line-height: 86px;">裁判文书公开</li>
+<li class="li3" style="line-height: 86px;">执行信息公开</li>
+</ul>
+</div>
+<br style="clear:both;">
+</div>
+<!--end f1-->
+<div class="f2">
+<div class="kjtd">快捷通道</div>
+<ul class="kuaij">
+<li>
+<p><img src="/${res}/files/lian.png" width="44" height="44"  alt=""/></p>
+<p>网上立案</p>
+</li>
+<li>
+<img src="/${res}/files/xinfang.png" width="44" height="44"  alt=""/></p>
+<p>网上信访</p>
+</li>
+<li>
+<img src="/${res}/files/jiaof.png" width="44" height="44"  alt=""/></p>
+<p>网上缴费</p>
+</li>
+<li><img src="/${res}/files/chaxun.png" width="44" height="44"  alt=""/></p>
+<p>案件查询</p>
+</li>
+<li><img src="/${res}/files/pangting.png" width="44" height="44"  alt=""/></p>
+<p>网上旁听</p>
+</li>
+<li><img src="/${res}/files/yuejuan.png" width="44" height="44"  alt=""/></p>
+<p>网上阅卷</p>
+</li>
+<li><img src="/${res}/files/tijiao.png" width="44" height="44"  alt=""/></p>
+<p>材料递交</p>
+</li>
+<li><img src="/${res}/files/songda.png" width="44" height="44"  alt=""/></p>
+<p>电子送达</p>
+</li>
+<li><img src="/${res}/files/faguan.png" width="44" height="44"  alt=""/></p>
+<p>联系法官</p>
+</li>
+<li><img src="/${res}/files/sq.png" width="44" height="44"  alt=""/></p>
+<p>事项申请</p>
+</li>
+<li><img src="/${res}/files/dsr.png" width="44" height="44"  alt=""/></p>
+<p>当事人服务</p>
+</li>
+<br style="clear:both;">
+</ul>
+<br style="clear:both;">
+</div>
+<!--end f2-->
+<div class="f3">
+<div class="gongg">
+<div class="title" style="border-bottom:2px solid #1388ff;">
+<span style="display:block;color:#fff;background-color:#1388ff;width:90px;text-align:center;float:left;font-size:15px;">公告信息</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<div>
+<span style="display:block;width:150px;height:100px;float:left;"><img src="/${res}/files/pic0.png" width="150" height="90"  alt=""/></span>
+<span style="display:block;float:left;margin-left:10px;width:420px;word-wrap:break-word;">
+<p style="color:#1388ff;line-height:34px;">
+关于XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</p>
+
+<p style="font-size:13px;line-height:20px;"><span style="color:#666;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......</span><a href="" style="color:#F00;">查看详情</a></p>
+</span>
+<br style="clear:both;">
+</div>
+<div style="border-top:1px dashed #999;margin-top:5px;padding-top:10px;padding-left:12px;">
+<ul style="list-style-type:square;color:#1388ff;">
+<li style="font-size:13px;line-height:24px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:24px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:24px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:24px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:24px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="zhin">
+<div class="title">
+<span style="display:block;color:#1388ff;width:80px;text-align:center;float:left;font-size:15px;">诉讼指南</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<ul style="padding:5px;">
+<li>指南X</li>
+<li>指南X</li>
+<li>指南X</li>
+<li>指南X</li>
+<li>指南X</li>
+</ul>
+<span><img src="/${res}/files/banner1.png" width="100%" height="auto"  alt=""/></span>
+</div>
+<br style="clear:both;" />
+</div>
+<!--end f3-->
+<div class="f4">
+<span><img src="/${res}/files/banner2.png" width="100%" height="auto"  alt=""/></span>
+</div>
+<!--end f4-->
+<div class="f5">
+<div class="liuc">
+<div class="title" style="background-color:#eee;">
+<span style="display:block;color:#666;border-top:3px solid #1388ff;width:110px;text-align:center;float:left;font-size:15px;">审判流程公开</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<ul style="list-style-type:square;color:#1388ff;padding-left:12px;">
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+</ul>
+</div>
+</div>
+<div class="wens">
+<div class="title" style="background-color:#eee;">
+<span style="display:block;color:#666;border-top:3px solid #1388ff;width:110px;text-align:center;float:left;font-size:15px;">裁判文书公开</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<ul style="list-style-type:square;color:#1388ff;padding-left:12px;">
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+<li style="font-size:13px;line-height:28px;"><span style="display:block;width:auto;float:left;color:#535353;">关于XXXXXXXXXXXXXXXXXXXXXXXXXXX...</span><span style="display:block;width:auto;float:right;color:#bfbfbf;">[2016-06-15]</span></li>
+</ul>
+</div>
+</div>
+<br style="clear:both;">
+</div>
+<!--end f5-->
+<div class="f6">
+<div class="sus">
+<div class="l">
+<div class="title" style="border-bottom:1px solid #ccc;">
+<span style="display:block;color:#1388ff;width:90px;text-align:center;float:left;font-size:15px;">诉讼流程</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<ul style="list-style-type:none;">
+<li style="font-size:13px;line-height:28px;color:#333;"><span style="color:#c2030b;">【刑事】</span><span>刑事一审诉讼流程。。
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span style="color:#c2030b;">【民事】</span><span>民事一审诉讼流程
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span style="color:#c2030b;">【行政】</span><span>行政一审诉讼流程
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span style="color:#c2030b;">【执行】</span><span>执行流程
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span style="color:#c2030b;">【刑事】</span><span>刑事二审诉讼流程</span></li>
+</ul>
+</div>
+</div>
+<div class="c">
+<div class="title" style="border-bottom:1px solid #ccc;">
+<span style="display:block;color:#1388ff;width:90px;text-align:center;float:left;font-size:15px;">诉讼费用</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<ul style="list-style-type:none;">
+<li style="font-size:13px;line-height:28px;color:#333;"><span>费用计算工具
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>费用计算工具
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>费用计算工具
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>费用计算工具
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>费用计算工具</span></li>
+</ul>
+</div>
+</div>
+<div class="r">
+<div class="title" style="border-bottom:1px solid #ccc;">
+<span style="display:block;color:#1388ff;width:90px;text-align:center;float:left;font-size:15px;">诉讼模板</span>
+<span class="more">更多+</span>
+<br style="clear:both;">
+</div>
+<div class="cont">
+<ul style="list-style-type:none;">
+<li style="font-size:13px;line-height:28px;color:#333;"><span>XXXXXXXXX模板
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>XXXXXXXXX模板
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>XXXXXXXXX模板
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>XXXXXXXXX模板
+</span></li>
+<li style="font-size:13px;line-height:28px;color:#333;"><span>XXXXXXXXX模板</span></li>
+</ul>
+</div>
+</div>
+<br style="clear:both;">
+</div>
+</div>
+<!--end f6-->
+<div class="f7">
+<span style="color:#1388ff;">友情链接：</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+<span>XXXXXXXX</span>
+
+</div>
+<!--end f7-->
+</div>
+<!--end inner-->
+  <div style="clear:both"></div>
+</div>
+
+<!--end content-->
+<div class="footer">
+<div class="inner" style="padding-top:20px;">
+  <div style="width:auto;float:left;padding:5px;"><img src="/${res}/files/red.png" width="40" height="auto"  alt=""/></div>
+  <div style="width:auto;float:left;text-align:center;margin-left:110px;">
+  <p style="line-height:30px;"><span>地址：某某省某某市某某路70号</span><span style="padding:0 20px">电话：05xx-xxxxxxxxx</span><span>Email：xxxxxxx@mail.mm.gs.cn</span></p>
+  <p><span>Copyright © 2016 mmwsa.com All Rights Reserved</span><span style="padding:0 20px">某 ICP备12345678号-1</span> 
+</p>
+  </div>
+  </div>
+</div>
+<!--end footer-->
+</div>
+</body>
+</html>

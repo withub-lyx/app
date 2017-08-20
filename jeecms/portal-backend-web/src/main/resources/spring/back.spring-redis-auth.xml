@@ -1,0 +1,20 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+    <bean id="jedisPoolConfig-auth" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="testOnBorrow" value="true"/>
+        <property name="maxIdle" value="50" />
+        <property name="maxWaitMillis" value="3000" />
+    </bean>
+
+    <bean id="jedisPool-auth" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg index="0" ref="jedisPoolConfig-auth"/>
+        <constructor-arg index="1" value="${auth.redis.ip}" />
+        <constructor-arg index="2" value="${auth.redis.port}" />
+        <constructor-arg index="3" value="${auth.redis.timeout}" />
+        <constructor-arg index="4" value="${auth.redis.common.key}"/>
+    </bean>
+</beans>

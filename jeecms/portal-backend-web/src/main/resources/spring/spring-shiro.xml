@@ -1,0 +1,174 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+ <!--   <bean id="jedisPoolConfig-shiro" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="testOnBorrow" value="true"/>
+        <property name="maxIdle" value="50" />
+        <property name="maxWaitMillis" value="3000" />
+    </bean>
+
+
+    <bean id="jedisConnectionFactory-shiro" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${auth.redis.ip}"/>
+        <property name="port" value="${auth.redis.port}"/>
+        <property name="password" value="${auth.redis.common.key}"/>
+        <property name="poolConfig" ref="jedisPoolConfig-shiro"/>
+    </bean>
+
+    <bean id ="redisTemplate-shiro" class="org.springframework.data.redis.core.RedisTemplate" >
+        <property name="connectionFactory" ref="jedisConnectionFactory-shiro"/>
+    </bean>
+
+    <bean id="redisCacheManagerShiro" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg ref="redisTemplate-shiro"/>
+        <property name="usePrefix" value="true"/>
+    </bean>
+-->
+
+    <bean  id="defaultPasswordService" class="org.apache.shiro.authc.credential.DefaultPasswordService"></bean>
+    <!-- 缓存管理器 -->
+    <bean id="shiroRedisCacheManager" class="com.portal.auth.shiro.cacheManager.ShiroRedisCacheManager">
+        <property name="springCacheManger" ref="springEhCacheCacheManager"/>
+        <!--<property name="springCacheManger" ref="redisCacheManagerShiro"/>-->
+    </bean>
+
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="com.portal.auth.shiro.realm.UtCredentialsMatcher"/>
+    <bean id="userNameCredentialsMatcher" class="com.portal.auth.shiro.realm.UserNameCredentialsMatcher">
+        <property name="passwordService" ref="defaultPasswordService"></property>
+    </bean>
+
+    <!-- Realm实现 -->
+    <bean id="utRealm" class="com.portal.auth.shiro.realm.UtRealm">
+        <property name="credentialsMatcher"  ref="credentialsMatcher"/>
+        <property name="cachingEnabled" value="false"/>
+        <property name="authenticationCachingEnabled" value="false"/>
+        <property name="authorizationCachingEnabled" value="false"/>
+        <property name="shiroDataService" ref="shiroDataService"/>
+    </bean>
+
+    <bean id="userNamePasswordRealm" class="com.portal.auth.shiro.realm.UserNamePasswordRealm">
+        <property name="credentialsMatcher"  ref="userNameCredentialsMatcher"/>
+        <property name="cachingEnabled" value="false"/>
+        <property name="authenticationCachingEnabled" value="false"/>
+        <property name="authorizationCachingEnabled" value="false"/>
+        <property name="shiroDataService" ref="shiroDataService"/>
+    </bean>
+
+    <!--用于查询shiro所需的用户角色权限-->
+    <bean  id="shiroDataService" class="com.portal.auth.shiro.db.service.ShiroDataCacheAwareService">
+        <property name="jdbcTemplate" ref="jdbcTemplateAuthShiro"/>
+        <property name="cacheManager" ref="shiroRedisCacheManager"/>
+    </bean>
+
+
+    <!-- Subject工厂    去session 无状态-->
+    <bean id="noSessionSubjectFactory" class="com.portal.auth.shiro.subjectFactory.NoSessionSubjectFactory"/>
+
+    <!-- 会话管理器 -->
+    <bean id="shiroSessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+    </bean>
+    <!--
+        直接抛异常的认证处理器-->
+    <bean  id="throwExceptionModularRealmAuthenticator" class="com.portal.auth.shiro.authenticator.ThrowExceptionModularRealmAuthenticator"></bean>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="authenticator" ref="throwExceptionModularRealmAuthenticator"/>
+        <property name="realms">
+            <list >
+                <ref bean="userNamePasswordRealm"/>
+                <ref bean="utRealm"/>
+            </list>
+        </property>
+      <!--  <property name="subjectDAO.sessionStorageEvaluator.sessionStorageEnabled" value="false"/>-->
+        <property name="subjectFactory" ref="noSessionSubjectFactory"/>
+        <property name="sessionManager" ref="shiroSessionManager"/>
+        <property name="authorizer.permissionResolver" ref="portalPermissionResolverShiro"/>
+    </bean>
+
+
+
+    <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+
+
+    <bean id="utLoginFilter" class="com.portal.auth.shiro.filter.UtLoginFilter">
+        <property name="loginUrl" value="/login"/>
+    </bean>
+
+    <bean id="userNameLoginFilter" class="com.portal.auth.shiro.filter.UserNameLoginFilter">
+        <property name="loginUrl" value="/login"/>
+    </bean>
+
+    <bean id="utLogoutFilter" class="com.portal.auth.shiro.filter.UtLogoutFilter"/>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="filters">
+            <util:map>
+                <entry key="utLoginFilter" value-ref="utLoginFilter"/>
+                <entry key="userNameLoginFilter" value-ref="userNameLoginFilter"/>
+                <entry key="utLogoutFilter" value-ref="utLogoutFilter"/>
+            </util:map>
+        </property>
+        <!--
+        /**=utAuthcFilter,
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                /MP_verify_jShnIz4fy2pXUN1y.txt=anon
+                /resource/**=anon
+                /static/**=anon
+                /front/**=anon
+                /favicon.ico=anon
+                /login = utLoginFilter,userNameLoginFilter
+                /logout = utLogoutFilter
+                /** = utLoginFilter
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+
+
+
+
+    <!--数据库设置，用于查取角色和权限  begin-->
+<!--    <bean id="dataSourceAuthShiro" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${db.auth.driver}"/>
+        <property name="url" value="${db.auth.url}"/>
+        <property name="username" value="${db.auth.username}"/>
+        <property name="password" value="${db.auth.password}"/>
+    </bean>-->
+
+    <bean id="jdbcTemplateAuthShiro" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource-auth"/>
+    </bean>
+    <!--数据库设置，用于查取角色和权限  end-->
+
+
+
+    <bean id="portalPermissionResolverShiro" class="com.portal.auth.shiro.permissionReslover.PortalPermissionResolver"/>
+
+
+    <bean class="com.portal.common.util.SpringBeanUtils"/>
+
+</beans>

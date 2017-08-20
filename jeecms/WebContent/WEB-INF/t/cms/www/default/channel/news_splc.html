@@ -1,0 +1,899 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${channel.title!channel.name} - ${site.name} - Powered by JEECMS</title>
+<head>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link href="/${res}/css/html5.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/css/yem.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/files/b1njTimeline.css" rel="stylesheet" media="screen"/>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${resSys}/jqueryUI/jquery.ui.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/jqueryUI/jquery-ui.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${resSys}/echarts/build/dist/echarts.js"></script>
+<script src="${resSys}/echarts/jquery.min.js"></script>
+<script src="/${res}/js/jquery.b1njTimeline.js"></script>
+<script src="/${res}/js/moment.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${base}", location.href, document.referrer);
+});
+
+</script>
+</head>
+<body>
+<div class="wapper">
+    [#include "../include/header.html"/]
+    [#include "../include/navi_splc.html"/]
+<div class="container">
+	
+	<!-- 左栏_begin -->
+	<div class="w671 mt10">
+    	<div style="width:100%;">
+					<div class="locat">
+						<div class="website1">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}" target="_blank">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+					</div>
+					<div class="search">
+					<input type="text" class="search-input" value="" placeholder="请输入关键词搜索" style="color: rgb(153, 153, 153);">
+					<input type="submit" class="search-button" value="搜索" >
+					</div>
+					<br style="clear:both;">
+				</div>
+        <div class="clear-10"></div>
+        <div style="width:100%;height:35px">
+        <div style="float:left">
+        <div class="titles">[#list channel.nodeList as n][#if !n_has_next] ${n.name} [/#if][/#list]</div>
+        </div>
+        </div>
+        <!-- 国内新闻_begin -->
+        <div class="texsplc">
+            <div style="width:99%;border: 1px solid rgb(204, 204, 204);overflow:hidden">
+               <div style="width:100%;height:auto;overflow:hidden;color:#666">
+                  <div class="splcTitle">
+			        <div style="float:left"><h3>审判流程公开内容</h3></div>
+			        <div style="float:right;padding-right:15px">
+			          <a href="">审判流程公开范围</a>&nbsp&nbsp&nbsp&nbsp<a href="">审判查询方法</a>
+			        </div>
+			      </div>
+			      <div class="splcCont">
+			          <div style="text-align:center;overflow:hidden;width:100%"><h4>海南法院审判流程公开内容</h4></div>
+			          <p>&nbsp&nbsp&nbsp&nbsp海南法院受理的民事、行政、执行案件在正式立案后，会向案件当事人及律师公开案件立案、审理、结案过程中的重要案件信息，共计15类62项信息。具体公开信息项可在下图查看，同时案件当事人及律师可登录海南法院审判信息网及移动诉讼服务APP查看公开详情。</p>
+			      </div >
+			      <div id="page">
+			            <ol id="timeline1">
+           					 <li>
+               						 <time datetime="1991">立案</time>
+                					 
+            				</li>
+           					 <li>
+               						 <time datetime="1992">立案信息</time>
+              						  <p>立案案号、立案案由、立案日期、案件名称</p>
+            				</li>
+           					 <li>
+                					<time datetime="1993">诉前财产保全信息</time>
+                					  <p>申请信息：申请人姓名或名称、申请时间、申请事项；保全信息：保全期间、强制措施方式、 续保申请时间；解除保全信息：解除时间、解除标的物</p>
+            				</li>
+            				<li>
+                					<time datetime="1994">审理</time>
+                					  
+            				</li>
+            				<li>
+                					<time datetime="1995">承办人员信息</time>
+                					<p>承办法官、书记员、合议庭组成人员的姓名；承办法官、书记员的办公电话；承办法官、书记员、合议庭组成人员的变更</p>
+            				</li>
+            				<li>
+                					<time datetime="1996">庭审信息</time>
+                					<p>开庭信息：开庭时间、地点、法庭房间、法庭房间变更；庭审活动同步录音或录像</p>
+           				    </li>
+            				<li>
+                					<time datetime="1997">诉讼程序信息</time>
+                					<p>诉讼程序、审理期限；程序变更信息：变更时间、变更后诉讼程序、变更后审理期限</p>
+            				</li>
+            				<li>
+               						 <time datetime="1998">起诉书、传票等送达信息</time>
+               						 <p>送达时间、 送达对象、送达方式、送达结果</p>
+            				</li>
+            				<li>
+               						 <time datetime="1999">管辖权处理信息</time>
+                					 <p>管辖异议申请人姓名或名称、管辖异议处理结果、管辖异议上诉结果</p>
+            				</li>
+            				<li>
+                					<time datetime="2000">财产保全信息</time>
+                					<p>申请信息：申请人姓名或名称、申请时间、申请事项；处理信息：保全期间、强制措施方式、续保申请时间；解除保全信息：解除时间、解除标的物</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2001">先予执行情况</time>
+                					<p>申请人姓名或名称、申请时间、处理结果</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2002">扣除审限情况</time>
+                					<p>扣除审限事由、扣除审限开始时间、恢复审理时间</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2003">审限中止情况</time>
+                					<p>审限中止事由、审限中止开始时间、恢复审理时间</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2004">审限延长情况</time>
+                					<p>审限延长事由、审限延长开始时间、审限延长期间</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2005">结案</time>
+                					
+           					 </li>
+           					 <li>
+                					<time datetime="2006">结案信息</time>
+                					<p>结案时间、结案方式</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2007">文书送达信息</time>
+                					<p>送达时间、送达对象、送达方式、送达结果</p>
+           					 </li>
+           					 <li>
+                					<time datetime="2008">上诉信息</time>
+                					<p>上诉方、上诉时间、上诉移送法院、上诉费用缴纳时间、上诉卷宗接收时间</p>
+           					 </li>
+        				</ol>
+        			</div>
+               </div>    
+            </div>
+            <div style="float:left;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+			    <div class="splcTitle">
+			    <h3>各类案件平均审理用时</h3>
+			    </div>
+			    <div id="bar1" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:right;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+                <div class="splcTitle">
+			    <h3>一审案件平均审理用时</h3>
+			    </div>
+			    <div id="bar2" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:left;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+			    <div class="splcTitle">
+			    <h3>二审案件平均审理用时</h3>
+			    </div>
+			    <div id="bar3" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:right;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+                <div class="splcTitle">
+			    <h3>每月上诉移转平均用时</h3>
+			    </div>
+			    <div id="line1" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:left;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+			    <div class="splcTitle">
+			    <h3>民事案件案由分布</h3>
+			    </div>
+			    <div id="pie1" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:right;height:500px;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+                <div class="splcTitle">
+			    <h3>各类案件上诉移转平均用时</h3>
+			    </div>
+			    <div id="bar4" style="height:400px;width:100%;"></div>
+			</div>
+			<div style="float:left;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+			    <div class="splcTitle">
+			    <h3>审判流程公开情况</h3>
+			    </div>
+			    <div style="clear:both;"></div>
+                <div class="table">
+                   <table class="tab" cellpadding="0" cellspacing="0">
+	                   <thead>                             
+	                         <tr class="tab_tr">
+	                                    <th class="tab_th"><div>公开信息</div></th>
+	                                    <th class="tab_th"><div>公开数量 </div></th>
+	                         </tr>
+	                   </thead>
+                       <tbody class="tab_body">
+                           <tr class="treven">
+										<td class="tab_td">立案</td>
+										<td class="tab_td">1200</td>
+							</tr> 
+							<tr class="treven">
+										<td class="tab_td">审理</td>
+										<td class="tab_td">950</td>
+							</tr> 
+						</tbody>
+ 					</table>
+ 				</div>
+			</div>
+			<div style="float:right;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+                <div class="splcTitle">
+			    <h3>各法院上诉移转平均用时</h3>
+			    </div>
+                <div class="table">
+                   <table class="tab" cellpadding="0" cellspacing="0">
+	                   <thead>                             
+	                         <tr class="tab_tr">
+	                                    <th class="tab_th"><div>公开信息</div></th>
+	                                    <th class="tab_th"><div>公开数量 </div></th>
+	                         </tr>
+	                   </thead>
+                       <tbody class="tab_body">
+                           <tr class="treven">
+										<td class="tab_td">立案</td>
+										<td class="tab_td">1200</td>
+							</tr> 
+							<tr class="treven">
+										<td class="tab_td">审理</td>
+										<td class="tab_td">950</td>
+							</tr> 
+						</tbody>
+ 					</table>
+ 				</div>
+			</div>
+			<div style="float:left;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+			    <div class="splcTitle">
+			    <h3>海南法院指导文件</h3>
+			    </div>
+			    <div style="clear:both;"></div>
+                <ul style="list-style-type:square;color:#1388ff;height:auto;margin:15px 15px 15px 30px">
+          			<!--  [@cms_content_list count='10' titLen='15' orderBy='2' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+		  			[#list tag_list as a]
+		 					 <li class="texli"><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span><span style="display:block;width:20%;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+		  			[/#list]
+		  			[/@cms_content_list]-->
+                     [@cms_content_page count='10' orderBy='2' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+                     [#list tag_pagination.list as a]
+                               <li class="texli"><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span><span style="display:block;width:20%;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+                     [/#list]
+                     <div style="clear:both;"></div>
+                     <div class="pagesite">
+                       [@cms_pagination sysPage='1'/]
+                     </div>
+                     [/@cms_content_page]
+				</ul>
+			</div>
+			<div style="float:right;width:49%;border: 1px solid rgb(204, 204, 204);margin-top:20px">
+                <div class="splcTitle">
+			    <h3>最高法院指导文件</h3>
+			    </div>
+                <ul style="list-style-type:square;color:#1388ff;height:auto;margin:15px 15px 15px 30px">
+          			<!--  [@cms_content_list count='10' titLen='15' orderBy='2' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+		  			[#list tag_list as a]
+		 					 <li class="texli"><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span><span style="display:block;width:20%;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+		  			[/#list]
+		  			[/@cms_content_list]-->
+                     [@cms_content_page count='10' orderBy='2' channelId='12' channelOption='1' dateFormat='yyyy-MM-dd']
+                     [#list tag_pagination.list as a]
+                               <li class="texli"><a href="${a.url}"><span style="display:block;width:60%;float:left;color:#535353;">[@text_cut s=a.title len=22 /][#if a.new]&nbsp&nbsp<img src="${base}/${site.newPic!}"/>[/#if]</span><span style="display:block;width:20%;float:right;color:#bfbfbf;">${a.date?string(dateFormat)}</span></a></li>
+                     [/#list]
+                     <div style="clear:both;"></div>
+                     <div class="pagesite">
+                       [@cms_pagination sysPage='1'/]
+                     </div>
+                     [/@cms_content_page]
+				</ul>
+			</div>
+	</div>
+        <!-- 国内新闻_end -->
+        <div class="clear"></div>
+    </div>
+    <!-- 左栏_end -->
+</div>
+[#include "../include/footer.html"/]
+</div>
+<script>
+$(function() {
+            $('#timeline1').b1njTimeline({
+                'height' : 1000
+            });
+});
+  require.config({
+            paths: {
+            	 //echarts: './js'
+                echarts: '${resSys}/echarts/build/source'
+            }
+  });
+  require(
+		    [
+		        'echarts',
+		        'echarts/chart/map',
+		        'echarts/chart/bar',
+		        'echarts/chart/line',
+		        'echarts/chart/pie',
+		    ],
+		    function (ec) {
+		    	var theme = {
+		    		    // 默认色板
+		    		    color: [
+		    		        '#1790cf','#1bb2d8','#99d2dd','#88b0bb',
+		    		        '#1c7099','#038cc4','#75abd0','#afd6dd'
+		    		    ],
+		                
+		    		    
+		    		    map: {
+		    		        itemStyle: {
+		    		            normal: {
+		    		                areaStyle: {
+		    		                    color: '#48C1DF'
+		    		                },
+		    		                label: {
+		    		                    textStyle: {
+		    		                        color: '#FFFFFF'
+		    		                    }
+		    		                }
+		    		            },
+		    		            emphasis: {                 // 也是选中样式
+		    		                areaStyle: {
+		    		                    color: '#99d2dd'
+		    		                },
+		    		                label: {
+		    		                    textStyle: {
+		    		                        color: '#c12e34'
+		    		                    }
+		    		                }
+		    		            }
+		    		        }
+		    		    },
+		    		    textStyle: {
+		    		        fontFamily: '微软雅黑, Arial, Verdana, sans-serif'
+		    		    }
+		    	};
+		        var MyChart_bar_1 = ec.init(document.getElementById('bar1'));
+		        var MyChart_bar_2 = ec.init(document.getElementById('bar2'));
+		        var MyChart_bar_3 = ec.init(document.getElementById('bar3'));
+		        var MyChart_bar_4 = ec.init(document.getElementById('bar4'));
+		        var MyChart_line_1 = ec.init(document.getElementById('line1'));
+		        var MyChart_pie_1 = ec.init(document.getElementById('pie1'));
+		        var ecConfig = require('echarts/config');
+			    var zrEvent = require('zrender/tool/event');
+			    var option_bar_1 = {
+			    	   /* title : {
+			    	        text: '某地区蒸发量和降水量',
+			    	        subtext: '纯属虚构'
+			    	    },*/
+			    	    tooltip : {
+			    	        trigger: 'item'
+			    	    },
+			    	    /* legend: {
+			    	        data:['单位：天数']
+			    	    },
+			    	    toolbox: {
+			    	        show : true,
+			    	        feature : {
+			    	            mark : {show: true},
+			    	            dataView : {show: true, readOnly: false},
+			    	            magicType : {show: true, type: ['line', 'bar']},
+			    	            restore : {show: true},
+			    	            saveAsImage : {show: true}
+			    	        }
+			    	    },*/
+			    	    calculable : true,
+			    	    xAxis : [
+			    	        {
+			    	        	splitLine:{
+			    	        	　　　　show:false
+			    	        	　　},
+			    	            type : 'category',
+			    	            data : ['刑事','民事','商事','知产','行政']
+			    	        }
+			    	    ],
+			    	    yAxis : [
+			    	        {   
+			    	        	name : '单位：天',
+			    	            type : 'value'
+			    	        }
+			    	    ],
+			    	    series : [
+			    	        
+			    	        {
+			    	            name:'案件数量',
+			    	            type:'bar',
+			    	            data:[2.6, 5.9, 9.0, 26.4, 28.7],
+			    	            itemStyle:{
+			    	            	normal:{
+			    	            		color: function(params) {
+			                                // build a color map as your need.
+			                                var colorList = [
+			                                  
+			                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+			                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+			                                   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+			                                ];
+			                                return colorList[params.dataIndex]
+			                            },
+			    　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+			                            label: {
+			                                show: true,
+			                                position: 'top',
+//			                                 formatter: '{c}'
+			                                formatter: '{b}:{c}'
+			                            }
+			    	            	},
+			    	            	emphasis:{
+			    	            		color: function(params) {
+			                                // build a color map as your need.
+			                                var colorList = [
+                                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+			                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+			                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+			                                   
+			                                ];
+			                                return colorList[params.dataIndex]
+			                            },
+			    	            	},
+			    	            }
+			    	         /*   markPoint : {
+			    	                data : [
+			    	                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+			    	                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+			    	                ]
+			    	            },
+			    	            markLine : {
+			    	                data : [
+			    	                    {type : 'average', name : '平均值'}
+			    	                ]
+			    	            }*/
+			    	        }
+			    	    ]
+			    	};
+			    var option_bar_2 = {
+				    	   /* title : {
+				    	        text: '某地区蒸发量和降水量',
+				    	        subtext: '纯属虚构'
+				    	    },*/
+				    	    tooltip : {
+				    	        trigger: 'item'
+				    	    },
+				    	    /* legend: {
+				    	        data:['单位：天数']
+				    	    },
+				    	    toolbox: {
+				    	        show : true,
+				    	        feature : {
+				    	            mark : {show: true},
+				    	            dataView : {show: true, readOnly: false},
+				    	            magicType : {show: true, type: ['line', 'bar']},
+				    	            restore : {show: true},
+				    	            saveAsImage : {show: true}
+				    	        }
+				    	    },*/
+				    	    calculable : true,
+				    	    xAxis : [
+				    	        {
+				    	        	splitLine:{
+				    	        	　　　　show:false
+				    	        	　　},
+				    	            type : 'category',
+				    	            data : ['刑事','民事','商事','知产','行政']
+				    	        }
+				    	    ],
+				    	    yAxis : [
+				    	        {
+				    	        	name : '单位：天',
+				    	            type : 'value'
+				    	        }
+				    	    ],
+				    	    series : [
+				    	        
+				    	        {
+				    	            name:'案件数量',
+				    	            type:'bar',
+				    	            data:[2.6, 5.9, 9.0, 26.4, 28.7],
+				    	            itemStyle:{
+				    	            	normal:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+				                                  
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+				                            label: {
+				                                show: true,
+				                                position: 'top',
+//				                                 formatter: '{c}'
+				                                formatter: '{b}:{c}'
+				                            }
+				    	            	},
+				    	            	emphasis:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+	                                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    	            	},
+				    	            }
+				    	         /*   markPoint : {
+				    	                data : [
+				    	                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+				    	                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+				    	                ]
+				    	            },
+				    	            markLine : {
+				    	                data : [
+				    	                    {type : 'average', name : '平均值'}
+				    	                ]
+				    	            }*/
+				    	        }
+				    	    ]
+				    	};
+			    var option_bar_3 = {
+				    	   /* title : {
+				    	        text: '某地区蒸发量和降水量',
+				    	        subtext: '纯属虚构'
+				    	    },*/
+				    	    tooltip : {
+				    	        trigger: 'item'
+				    	    },
+				    	    /* legend: {
+				    	        data:['单位：天数']
+				    	    },
+				    	    toolbox: {
+				    	        show : true,
+				    	        feature : {
+				    	            mark : {show: true},
+				    	            dataView : {show: true, readOnly: false},
+				    	            magicType : {show: true, type: ['line', 'bar']},
+				    	            restore : {show: true},
+				    	            saveAsImage : {show: true}
+				    	        }
+				    	    },*/
+				    	    calculable : true,
+				    	    xAxis : [
+				    	        {
+				    	        	splitLine:{
+				    	        	　　　　show:false
+				    	        	　　},
+				    	            type : 'category',
+				    	            data : ['刑事','民事','商事','知产','行政']
+				    	        }
+				    	    ],
+				    	    yAxis : [
+				    	        {
+				    	        	name : '单位：天',
+				    	            type : 'value'
+				    	        }
+				    	    ],
+				    	    series : [
+				    	        
+				    	        {
+				    	            name:'案件数量',
+				    	            type:'bar',
+				    	            data:[2.6, 5.9, 9.0, 26.4, 28.7],
+				    	            itemStyle:{
+				    	            	normal:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+				                                  
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+				                            label: {
+				                                show: true,
+				                                position: 'top',
+//				                                 formatter: '{c}'
+				                                formatter: '{b}:{c}'
+				                            }
+				    	            	},
+				    	            	emphasis:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+	                                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    	            	},
+				    	            }
+				    	         /*   markPoint : {
+				    	                data : [
+				    	                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+				    	                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+				    	                ]
+				    	            },
+				    	            markLine : {
+				    	                data : [
+				    	                    {type : 'average', name : '平均值'}
+				    	                ]
+				    	            }*/
+				    	        }
+				    	    ]
+				    	};
+			    var option_bar_4 = {
+				    	   /* title : {
+				    	        text: '某地区蒸发量和降水量',
+				    	        subtext: '纯属虚构'
+				    	    },*/
+				    	    tooltip : {
+				    	        trigger: 'item'
+				    	    },
+				    	    /* legend: {
+				    	        data:['单位：天数']
+				    	    },
+				    	    toolbox: {
+				    	        show : true,
+				    	        feature : {
+				    	            mark : {show: true},
+				    	            dataView : {show: true, readOnly: false},
+				    	            magicType : {show: true, type: ['line', 'bar']},
+				    	            restore : {show: true},
+				    	            saveAsImage : {show: true}
+				    	        }
+				    	    },*/
+				    	    calculable : true,
+				    	    xAxis : [
+				    	        {
+				    	        	splitLine:{
+				    	        	　　　　show:false
+				    	        	　　},
+				    	            type : 'category',
+				    	            data : ['刑事','民事','商事','知产','行政']
+				    	        }
+				    	    ],
+				    	    yAxis : [
+				    	        {
+				    	        	name : '单位：天',
+				    	            type : 'value'
+				    	        }
+				    	    ],
+				    	    series : [
+				    	        
+				    	        {
+				    	            name:'案件数量',
+				    	            type:'bar',
+				    	            data:[2.6, 5.9, 9.0, 26.4, 28.7],
+				    	            itemStyle:{
+				    	            	normal:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+				                                  
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+				                            label: {
+				                                show: true,
+				                                position: 'top',
+//				                                 formatter: '{c}'
+				                                formatter: '{b}:{c}'
+				                            }
+				    	            	},
+				    	            	emphasis:{
+				    	            		color: function(params) {
+				                                // build a color map as your need.
+				                                var colorList = [
+	                                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+				                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+				                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+				                                   
+				                                ];
+				                                return colorList[params.dataIndex]
+				                            },
+				    	            	},
+				    	            }
+				    	         /*   markPoint : {
+				    	                data : [
+				    	                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+				    	                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+				    	                ]
+				    	            },
+				    	            markLine : {
+				    	                data : [
+				    	                    {type : 'average', name : '平均值'}
+				    	                ]
+				    	            }*/
+				    	        }
+				    	    ]
+				    	};
+			    var option_pie_1 = {
+			    	    /*title : {
+			    	        text: '某站点用户访问来源',
+			    	        subtext: '纯属虚构',
+			    	        x:'center'
+			    	    },*/
+			    	    tooltip : {
+			    	        trigger: 'item',
+			    	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+			    	    },
+			    	    /*legend: {
+			    	        orient : 'vertical',
+			    	        x : 'left',
+			    	        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+			    	    },*/
+			    	    /*toolbox: {
+			    	        show : true,
+			    	        feature : {
+			    	            mark : {show: true},
+			    	            dataView : {show: true, readOnly: false},
+			    	            magicType : {
+			    	                show: true, 
+			    	                type: ['pie', 'bar'],
+			    	                option: {
+			    	                    funnel: {
+			    	                        x: '25%',
+			    	                        width: '50%',
+			    	                        funnelAlign: 'left',
+			    	                        max: 1548
+			    	                    }
+			    	                }
+			    	            },
+			    	            restore : {show: true},
+			    	            saveAsImage : {show: true}
+			    	        }
+			    	    },*/
+			    	   // calculable : true,
+			    	    series : [
+			    	        {
+			    	            name:'访问来源',
+			    	            type:'pie',
+			    	            radius : '55%',
+			    	            center: ['50%', '60%'],
+			    	            data:[
+			    	                {value:335, name:'合同、无因管理、不当得利纠纷'},
+			    	                {value:310, name:'婚姻家庭、继承纠纷'},
+			    	                {value:234, name:'劳动争议、人事争议'},
+			    	                {value:135, name:'侵权责任纠纷'},
+			    	                {value:1548, name:'物权纠纷'},
+			    	                {value:3489, name:'其他'}
+			    	            ],
+			    	            itemStyle:{
+			    	            	normal:{
+			    	            		color: function(params) {
+			                                // build a color map as your need.
+			                                var colorList = [
+			                                  
+			                                   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+			                                   '#F4E001','#B5C334','#FCCE10','#E87C25','#27727B',
+			                                   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+			                                ];
+			                                return colorList[params.dataIndex]
+			                            },
+			    　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+			                            label: {
+			                                show: true,
+			                                position: 'top',
+//			                                 formatter: '{c}'
+			                                formatter: '{b}:{c}'
+			                            }
+			    	            	},
+			    	            	emphasis:{
+			    	            		color: function(params) {
+			                                // build a color map as your need.
+			                                var colorList = [
+                                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0',
+                                               '#FCCE10','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+			                                   '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+			                                   
+			                                ];
+			                                return colorList[params.dataIndex]
+			                            },
+			    	            	},
+			    	            }
+			    	        
+			    	        }
+			    	    ]
+			    	};
+			    	                    
+		           var option_line_1= {
+		        		    /*title : {
+		        		        text: '未来一周气温变化',
+		        		        subtext: '纯属虚构'
+		        		    },*/
+		        		    tooltip : {
+		        		        trigger: 'item',
+		        		        formatter:'{b0}:{c0}天',
+		        		                   
+		        		        
+		        		    },
+		        		    /*
+		        		    legend: {
+		        		        data:['最高气温','最低气温']
+		        		    },
+		        		    toolbox: {
+		        		        show : true,
+		        		        feature : {
+		        		            mark : {show: true},
+		        		            dataView : {show: true, readOnly: false},
+		        		            magicType : {show: true, type: ['line', 'bar']},
+		        		            restore : {show: true},
+		        		            saveAsImage : {show: true}
+		        		        }
+		        		    },*/
+		        		    calculable : true,
+		        		    xAxis : [
+		        		        {   
+		        		        	splitLine:{
+			    	        	　　　　show:false
+			    	        	　　     },
+		        		            type : 'category',
+		        		            boundaryGap : false,
+		        		            data : ['七月份','八月份','九月份','十月份','十一月份','十二月份'],
+		        		           /* 	function(params){
+		        		            	var arr = new Array();
+		        		            	var myDate = new Date();
+		        		            	var monthNow = myDate.getMonth();//月份的取值为0-11，arr[0]-arr[5]为当前月份的前五个月
+		        		            	    arr[0] = (monthNow<6?monthNow-5+12:monthNow-5).toString+'月';
+		        		            		arr[1] = (monthNow<5?monthNow-4+12:monthNow-4).toString+'月';
+		        		            		arr[2] = (monthNow<4?monthNow-3+12:monthNow-3).toString+'月';
+		        		            		arr[3] = (monthNow<3?monthNow-2+12:monthNow-2).toString+'月';
+		        		            		arr[4] = (monthNow<2?monthNow-1+12:monthNow-1).toString+'月';
+		        		            		arr[5] = (monthNow<1?monthNow+12:monthNow).toString+'月';
+		        		            	return arr;
+		        		            }*/
+		        		        }
+		        		    ],
+		        		    yAxis : [
+		        		        {
+		        		        	name : '单位：天',
+		        		            type : 'value',
+		        		            axisLabel : {
+		        		                formatter: '{value}'
+		        		            }
+		        		        }
+		        		    ],
+		        		    series : [
+		        		        {
+		        		            name:'上诉转移平均用时',
+		        		            type:'line',
+		        		            data:[11, 14, 15, 13, 12, 13],
+		        		            /*markPoint : {
+		        		                data : [
+		        		                    {type : 'max', name: '最大值'},
+		        		                    {type : 'min', name: '最小值'}
+		        		                ]
+		        		            },
+		        		            markLine : {
+		        		                data : [
+		        		                    {type : 'average', name: '平均值'}
+		        		                ]
+		        		            }*/
+		        		        },
+		        		       /* {
+		        		            name:'最低气温',
+		        		            type:'line',
+		        		            data:[1, -2, 2, 5, 3, 2],
+		        		            markPoint : {
+		        		                data : [
+		        		                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+		        		                ]
+		        		            },
+		        		            markLine : {
+		        		                data : [
+		        		                    {type : 'average', name : '平均值'}
+		        		                ]
+		        		            }
+		        		        }*/
+		        		    ]
+		        		};
+				   MyChart_bar_1.setOption(option_bar_1,true);
+				   MyChart_bar_2.setOption(option_bar_2,true);
+				   MyChart_bar_3.setOption(option_bar_3,true);
+				   MyChart_bar_4.setOption(option_bar_4,true);
+				   MyChart_pie_1.setOption(option_pie_1,true);
+				   MyChart_line_1.setOption(option_line_1,true);
+						
+		  
+		    });
+</script>
+</body>
+</html>
